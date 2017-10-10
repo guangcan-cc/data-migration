@@ -178,4 +178,12 @@ public interface IMigrationService {
      * @throws NonePrintException
      */
     void restoreData(Dmuserinfo user, MigrationParamVO paramVO)throws NonePrintException;
+
+    /**
+     * 查询组表
+     * @param groupId
+     * @return
+     * @throws NonePrintException
+     */
+    List<Dmgrouptable> queryAllTablesById(String groupId)throws NonePrintException;
 }

@@ -124,4 +124,10 @@ public class MigrationDAOImpl extends BaseDAOImpl implements IMigrationDAO {
         String hql = "select id from Dmgroup where groupname=:groupName";
         return (String) getSession().createQuery(hql).setString("groupName",groupName).uniqueResult();
     }
+
+    @Override
+    public List<Dmgrouptable> queryAllTablesById(String groupId) {
+        String hql = "from Dmgrouptable where groupid=:groupId";
+        return getSession().createQuery(hql).setString("groupId",groupId).list();
+    }
 }

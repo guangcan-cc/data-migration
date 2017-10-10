@@ -588,6 +588,11 @@ public class MigrationServiceImpl implements IMigrationService {
         logDAO.insertPO(dmmigrationlog);
         logDAO.batchPO(dmhandlemsglogs);
     }
+
+    @Override
+    public List<Dmgrouptable> queryAllTablesById(String groupId) throws NonePrintException {
+        return migrationDao.queryAllTablesById(groupId);
+    }
 }
 
 

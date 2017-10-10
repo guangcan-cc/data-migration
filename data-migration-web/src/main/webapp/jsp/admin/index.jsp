@@ -77,7 +77,7 @@
 			<dt><i class="Hui-iconfont">&#xe623;</i> 日志管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="../jsp/log/log_info.jsp" data-title="数据迁移" href="javascript:;">日志管理</a></li>
+					<li><a _href="../jsp/log/log_info.jsp" data-title="数据迁移" href="javascript:;">日志信息</a></li>
 				</ul>
 			</dd>
 		</dl>

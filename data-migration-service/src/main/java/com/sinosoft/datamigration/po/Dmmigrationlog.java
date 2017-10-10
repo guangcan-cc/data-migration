@@ -13,6 +13,7 @@ import java.util.Date;
 public class Dmmigrationlog {
     private String id;
     private String groupid;
+    private String groupname;
     private String handlecontent;
     private Date handlestarttime;
     private Date handleendtime;
@@ -38,6 +39,16 @@ public class Dmmigrationlog {
 
     public void setGroupid(String groupid) {
         this.groupid = groupid;
+    }
+
+    @Basic
+    @Column(name = "GROUPNAME")
+    public String getGroupname() {
+        return groupname;
+    }
+
+    public void setGroupname(String groupname) {
+        this.groupname = groupname;
     }
 
     @Basic
@@ -109,6 +120,7 @@ public class Dmmigrationlog {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (groupid != null ? !groupid.equals(that.groupid) : that.groupid != null) return false;
+        if (groupname != null ? !groupname.equals(that.groupname) : that.groupname != null) return false;
         if (handlecontent != null ? !handlecontent.equals(that.handlecontent) : that.handlecontent != null)
             return false;
         if (handlestarttime != null ? !handlestarttime.equals(that.handlestarttime) : that.handlestarttime != null)
@@ -126,6 +138,7 @@ public class Dmmigrationlog {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (groupid != null ? groupid.hashCode() : 0);
+        result = 31 * result + (groupname != null ? groupname.hashCode() : 0);
         result = 31 * result + (handlecontent != null ? handlecontent.hashCode() : 0);
         result = 31 * result + (handlestarttime != null ? handlestarttime.hashCode() : 0);
         result = 31 * result + (handleendtime != null ? handleendtime.hashCode() : 0);

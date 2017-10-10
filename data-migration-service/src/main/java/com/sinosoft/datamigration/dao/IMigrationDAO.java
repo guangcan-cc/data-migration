@@ -94,4 +94,11 @@ public interface IMigrationDAO extends IBaseDAO {
      * @return
      */
     String findGroupIdByGroupName(String groupName);
+
+    /**
+     * 查询组表
+     * @param groupId
+     * @return
+     */
+    List<Dmgrouptable> queryAllTablesById(String groupId);
 }

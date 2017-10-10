@@ -32,33 +32,19 @@
             <div class="inline">
                 <label class="form-label col-sm-2">组ID：</label>
                 <div class="formControls col-xs-3">
-                    <input type="text" class="input-text radius" value="" name="dsName">
+                    <input type="text" class="input-text radius" value="" name="groupId">
                 </div>
             </div>
             <div class="inline">
                 <label class="form-label col-sm-2">组名：</label>
                 <div class="formControls col-xs-3">
-                    <input type="text" class="input-text radius" value="" name="username">
+                    <input type="text" class="input-text radius" value="" name="groupName">
                 </div>
             </div>
         </div>
         <div class="row cl">
-            <div class="inline">
-                <label class="form-label col-sm-2">组类型：</label>
-                <div class="formControls col-xs-3">
-                    <input type="text" class="input-text radius" value="" name="creator">
-                </div>
-            </div>
             <div class="inline">
                 <label class="form-label col-sm-2">执行人：</label>
-                <div class="formControls col-xs-3">
-                    <input type="text" class="input-text radius" value="" name="creator">
-                </div>
-            </div>
-        </div>
-        <div class="row cl">
-            <div class="inline">
-                <label class="form-label col-sm-2">执行结果：</label>
                 <div class="formControls col-xs-3">
                     <input type="text" class="input-text radius" value="" name="creator">
                 </div>
@@ -74,36 +60,25 @@
         </div>
         <div class="row cl">
             <div style="margin-right: 100px;margin-top: 5px;">
-                <button class="btn btn-success" type="button" onclick="ajaxQueryDSInfo(1);"><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+                <button class="btn btn-success" type="button" onclick="ajaxQueryLogInfo(1);"><i class="Hui-iconfont">&#xe665;</i> 查询</button>
             </div>
         </div>
     </div>
     </form>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
-                <span class="l">
-                    <a href="javascript:void(0);" onclick="data_source_add('新增数据源','data_source_add.jsp');" class="btn btn-primary radius">
-                        <i class="Hui-iconfont">&#xe604;</i> 新增
-                    </a>
-                    <a class="btn btn-secondary radius" onclick="data_source_edit('编辑数据源','${ctx}/dataSource/editShowDSInfo');" href="javascript:void(0);">
-                        <i class="Hui-iconfont">&#xe60c;</i> 编辑
-                    </a>
-                </span>
+        <hr>
     </div>
     <div class="text-c" id="content">
         <table class="table table-border table-bg table-sort">
             <thead class="text-c">
             <tr>
-                <th>选择</th>
                 <th>序号</th>
-                <th>数据源名</th>
-                <th>用户名</th>
-                <th>服务器地址</th>
-                <th>端口</th>
-                <th>服务器名</th>
-                <th>数据源说明</th>
-                <th>创建人</th>
-                <th>创建时间</th>
-                <th>是否禁用</th>
+                <th>日志ID</th>
+                <th>组信息</th>
+                <th>执行时间</th>
+                <th>执行人</th>
+                <th>执行结果</th>
+                <th>执行详情</th>
             </tr>
             </thead>
             <tbody class="text-c" id="tbody">
@@ -125,13 +100,13 @@
     var pageSize = 4;
 
     $(function(){
-        ajaxQueryDSInfo(1);
+        ajaxQueryLogInfo(1);
     });
 
-    function ajaxQueryDSInfo(pageIndex){
+    function ajaxQueryLogInfo(pageIndex){
         $("#content").showLoading();
         $.ajax({
-            url:"${ctx}/dataSource/queryDSInfo?currentPage=" + pageIndex + "&pageSize=" + pageSize,
+            url:"${ctx}/log/queryLogInfo?currentPage=" + pageIndex + "&pageSize=" + pageSize,
             type:"post",
             data:$("#query-form").serialize(),
             dataType:"json",
@@ -144,19 +119,23 @@
                     pageSize = pager.pageSize;
                     var list = pager.content;
                     for(var i = 0; i < list.length; i++){
-                        var dsInfo = list[i];
+                        var info = list[i];
+                        var handleresult = info.handleresult;
+                        if(handleresult == 0){
+                            handleresult = "<div class='btn btn-danger radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a6;</i></div> 失败";
+                        } else if (handleresult == 1){
+                            handleresult = "<div class='btn btn-secondary radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a7;</i></div> 成功";
+                        } else if (handleresult == 2){
+                            handleresult = "<div class='btn btn-default radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6f9;</i></div> 正在执行";
+                        }
                         var trHtml = "<tr>" +
-                                        "<td><input type='radio' name='ds_info' value='"+ dsInfo.id +"'/></td>" +
                                         "<td>" + (i+1) + "</td>" +
-                                        "<td>" + dsInfo.dsname + "</td>" +
-                                        "<td>" + dsInfo.username + "</td>" +
-                                        "<td>" + dsInfo.serverip + "</td>" +
-                                        "<td>" + dsInfo.port + "</td>" +
-                                        "<td>" + dsInfo.servername + "</td>" +
-                                        "<td>" + (dsInfo.explain == null ? "无":dsInfo.explain) + "</td>" +
-                                        "<td>" + dsInfo.creator + "</td>" +
-                                        "<td>" + formatDate(dsInfo.createtime) + "</td>" +
-                                        "<td>" + (dsInfo.isforbidden == 1 ? "是" : "否") + "</td>" +
+                                        "<td>" + info.id + "</td>" +
+                                        "<td>" + info.groupid + "-" + info.groupname + "</td>" +
+                                        "<td>" + formatDateFull(info.handlestarttime) + "—" + formatDateFull(info.handleendtime) + "</td>" +
+                                        "<td>" + info.handleperson + "</td>" +
+                                        "<td>" + handleresult + "</td>" +
+                                        "<td><a href='javascript:void(0);' onclick=\"show_detail('" + info.id + "','" + info.groupid + "');\">查看</a></td>" +
                                     "</tr>";
                         $("#tbody").append(trHtml);
                     }
@@ -166,14 +145,14 @@
                     }
                     var pageHtml = "";
                     if(currentPage > 1){
-                        pageHtml = "<a class='n' href='#' onclick='ajaxQueryDSInfo(" + (currentPage-1) + ")'><上一页</a>";
+                        pageHtml = "<a class='n' href='#' onclick='ajaxQueryLogInfo(" + (currentPage-1) + ")'><上一页</a>";
                     }
                     if(pageTotal <= 10 || (pageTotal > 10 && currentPage < 7)){
                         for(var i = 1; i <= pageTotal; i++){
                             if(i == currentPage){
                                 pageHtml += "<a class='active' href='#'> " + i + " </a>";
                             } else {
-                                pageHtml += "<a href='#' onclick='ajaxQueryDSInfo(" + i + ")'> " + i + " </a>";
+                                pageHtml += "<a href='#' onclick='ajaxQueryLogInfo(" + i + ")'> " + i + " </a>";
                             }
                         }
                     } else {
@@ -182,7 +161,7 @@
                                 if(i == currentPage){
                                     pageHtml += "<a class='active' href='#'> " + i + " </a>";
                                 } else {
-                                    pageHtml += "<a href='#' onclick='ajaxQueryDSInfo(" + i + ")'> " + i + " </a>";
+                                    pageHtml += "<a href='#' onclick='ajaxQueryLogInfo(" + i + ")'> " + i + " </a>";
                                 }
                             }
                         } else {
@@ -190,13 +169,13 @@
                                 if(i == currentPage){
                                     pageHtml += "<a class='active' href='#'> " + i + " </a>";
                                 } else {
-                                    pageHtml += "<a href='#' onclick='ajaxQueryDSInfo(" + i + ")'> " + i + " </a>";
+                                    pageHtml += "<a href='#' onclick='ajaxQueryLogInfo(" + i + ")'> " + i + " </a>";
                                 }
                             }
                         }
                     }
                     if(currentPage < pageTotal){
-                        pageHtml += "<a class='n' href='#' onclick='ajaxQueryDSInfo(" + (currentPage+1) + ")'>下一页></a>";
+                        pageHtml += "<a class='n' href='#' onclick='ajaxQueryLogInfo(" + (currentPage+1) + ")'>下一页></a>";
                     }
                     $(".pages").html(pageHtml);
                 } else {
@@ -211,26 +190,12 @@
 
     }
 
-    /*添加*/
-    function data_source_add(title,url){
+    /*查看组表信息*/
+    function show_detail(logId,groupId){
         var index = layer.open({
             type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    /*编辑*/
-    function data_source_edit(title,url){
-        var id = $('input[name="ds_info"]:checked ').val();
-        if(isBlank(id)){
-            alert("请选择需要编辑的一条信息");
-            return ;
-        }
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url + "?id=" + id
+            title: "日志详情",
+            content: "${ctx}/log/showDetailLogInfo?logId=" + logId + "&groupId=" + groupId
         });
         layer.full(index);
     }

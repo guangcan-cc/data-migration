@@ -16,12 +16,35 @@ public class Dmhandlemsglog {
     private String grouptableid;
     private Date handlestarttime;
     private Date handleendtime;
+    private String migrationparam;
     private String threadinfo;
     private Integer datacount;
     private Integer handlecount;
     private Integer failedcount;
     private String failedreason;
     private String issuccess;
+    private String procedurename;
+    private String procedure;
+
+    @Basic
+    @Column(name = "procedurename")
+    public String getProcedurename() {
+        return procedurename;
+    }
+
+    public void setProcedurename(String procedurename) {
+        this.procedurename = procedurename;
+    }
+
+    @Basic
+    @Column(name = "procedure")
+    public String getProcedure() {
+        return procedure;
+    }
+
+    public void setProcedure(String procedure) {
+        this.procedure = procedure;
+    }
 
     @Id
     @Column(name = "ID")
@@ -31,6 +54,16 @@ public class Dmhandlemsglog {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "MIGRATIONPARAM")
+    public String getMigrationparam() {
+        return migrationparam;
+    }
+
+    public void setMigrationparam(String migrationparam) {
+        this.migrationparam = migrationparam;
     }
 
     @Basic
