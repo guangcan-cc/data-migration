@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.sinosoft</groupId>
+  <artifactId>data-migration</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>data-migration</name>
+  <modules>
+    <module>data-migration-web</module>
+    <module>data-migration-service</module>
+  </modules>
+  
+  <!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+		<repository>
+			<id>nexus</id>
+			<name>Team  Nexus Repository</name>
+			<url>http://repo.jsptz.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
+		<arch5-framework.version>5.5.1-SNAPSHOT</arch5-framework.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<hibernate.version>4.2.7.Final</hibernate.version>
+
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<commons-io.version>2.4</commons-io.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+
+		<servlet.version>3.0.1</servlet.version>
+		<jsp.version>2.2.1-b03</jsp.version>
+		<jstl.version>1.2</jstl.version>
+
+		<xstream.version>1.4.3</xstream.version>
+		<quartz.version>2.1.6</quartz.version>
+		<cglib.version>3.1</cglib.version>
+		<fastjson.version>1.2.28</fastjson.version>
+		<poi.version>3.11</poi.version>
+		<junit.version>4.12</junit.version>
+
+		<!-- 日志包 -->
+		<slf4j.version>1.7.12</slf4j.version>
+		<logback.version>1.1.3</logback.version>
+		<!-- Dubbox包 -->
+		<dubbo.version>2.8.4</dubbo.version>
+		<zkclient.version>0.1</zkclient.version>
+		<rs-api.version>2.0.1</rs-api.version>
+		<netty.version>3.7.0.Final</netty.version>
+		<resteasy.version>3.0.7.Final</resteasy.version>
+		<kryo.version>2.24.0</kryo.version>
+		<kryo-serializers.version>0.26</kryo-serializers.version>
+		<fst.version>1.55</fst.version>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>ins.framework</groupId>
+			<artifactId>arch5-framework</artifactId>
+			<version>${arch5-framework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-flyway</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-rule</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-rpc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-webjars-bsadmin</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-webjars-datetimepicker</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-office</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-dubbo</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bres</artifactId>
+					<groupId>ilog.rules</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- j2ee web spec 开始 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

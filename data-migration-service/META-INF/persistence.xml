@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="persistenceUnit">
+        <class>com.sinosoft.datamigration.po.TDatasource</class>
+        <class>com.sinosoft.datamigration.po.TGroup</class>
+        <class>com.sinosoft.datamigration.po.TGroupTable</class>
+        <class>com.sinosoft.datamigration.po.THandleMsgLog</class>
+        <class>com.sinosoft.datamigration.po.TMigrationLog</class>
+        <class>com.sinosoft.datamigration.po.TUser</class>
+        <class>com.sinosoft.datamigration.po.Dmdatasource</class>
+        <class>com.sinosoft.datamigration.po.Dmgroup</class>
+        <class>com.sinosoft.datamigration.po.Dmgrouptable</class>
+        <class>com.sinosoft.datamigration.po.Dmhandlemsglog</class>
+        <class>com.sinosoft.datamigration.po.Dmmigrationlog</class>
+        <class>com.sinosoft.datamigration.po.Dmuserinfo</class>
+        <properties>
+            <property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/ORCL"/>
+            <property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="eclipselink.jdbc.user"/>
+            <property name="eclipselink.jdbc.password"/>
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1521/ORCL"/>
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
+            <property name="hibernate.connection.username"/>
+            <property name="hibernate.connection.password"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:oracle:thin:@//localhost:1521/ORCL"/>
+            <property name="openjpa.ConnectionDriverName" value="oracle.jdbc.OracleDriver"/>
+            <property name="openjpa.ConnectionUserName"/>
+            <property name="openjpa.ConnectionPassword"/>
+            <property name="toplink.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/ORCL"/>
+            <property name="toplink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="toplink.jdbc.user"/>
+            <property name="toplink.jdbc.password"/>
+        </properties>
+    </persistence-unit>
+</persistence>

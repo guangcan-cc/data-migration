@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="data-migration-web:war">
+    <output-path>$PROJECT_DIR$/data-migration-web/target</output-path>
+    <root id="archive" name="data-migration.war">
+      <element id="artifact" artifact-name="data-migration-web:war exploded" />
+    </root>
+  </artifact>
+</component>
