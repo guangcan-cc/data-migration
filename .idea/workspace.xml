@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b425fe32-39f8-417f-b60d-2d927bb6ee4c" name="Default" comment="" />
+    <list default="true" id="b425fe32-39f8-417f-b60d-2d927bb6ee4c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="data-migration.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/data-migration-web/target/" />
@@ -73,7 +75,29 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="DMGROUP" />
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Oracle - @localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="ROOT" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="DMHANDLEMSGLOG" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -84,69 +108,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MigrationServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/MigrationServiceImpl.java">
+      <file leaf-file-name="LogController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/LogController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="452" column="0" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IDynamicDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IDynamicDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="100" selection-start-line="77" selection-start-column="82" selection-end-line="77" selection-end-column="100" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ErrorCodeDesc.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/ErrorCodeDesc.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="30" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DynamicDAOImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/DynamicDAOImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6483705">
-              <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+              <caret line="86" column="23" selection-start-line="86" selection-start-column="23" selection-end-line="86" selection-end-column="23" />
               <folding>
-                <marker date="1507536938650" expanded="true" signature="2369:2603" placeholder="select table... user_constraints" />
-                <marker date="1507536938650" expanded="true" signature="2486:2602" placeholder="select r_con... user_constraints" />
-                <marker date="1507536938650" expanded="true" signature="9373:9442" placeholder="select colum... user_col_comments" />
-                <marker date="1507536938650" expanded="true" signature="10688:10992" placeholder="select uc.co... user_constraints" />
-                <marker date="1507536938650" expanded="true" signature="12688:12740" placeholder="select table... all_tables" />
-                <marker date="1507536938650" expanded="true" signature="15265:15285" placeholder="select count... " />
-                <marker date="1507536938650" expanded="true" signature="15265:15286" placeholder="select count... missingValue" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_migration.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/dataMigration/data_migration.jsp">
+      <file leaf-file-name="log_info.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/log/log_info.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="88" selection-start-line="70" selection-start-column="88" selection-end-line="70" selection-end-column="88" />
+              <caret line="126" column="179" selection-start-line="126" selection-start-column="44" selection-end-line="126" selection-end-column="179" />
+              <folding>
+                <marker date="1507623893697" expanded="true" signature="5595:5641" placeholder="..." />
+                <marker date="1507623893697" expanded="true" signature="5835:5881" placeholder="..." />
+                <marker date="1507623893697" expanded="true" signature="6073:6119" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HandleLogVO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/HandleLogVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="37" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail_log_info.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/log/detail_log_info.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.290323">
+              <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MigrationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/MigrationController.java">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.759563">
+              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/admin/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="420" column="54" selection-start-line="420" selection-start-column="54" selection-end-line="420" selection-end-column="54" />
+              <caret line="81" column="17" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dmdatasource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmdatasource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dmgroup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmgroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="246" column="0" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+              <folding>
+                <element signature="e#5527#5528#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dmgrouptable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmgrouptable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -175,14 +231,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/migrationConfig/table_edit.jsp" />
-        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/migrationConfig/tables_in_group_view.jsp" />
-        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/h-ui/js/H-ui.admin.js" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/FieldInfoVO.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/TableInfoVO.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/IDSInfoService.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IBaseDAO.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/BaseDAOImpl.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/ConstraintInfoVO.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/DBManager.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/RelatedInfoVO.java" />
@@ -193,11 +241,7 @@
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmgrouptable.java" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/admin/welcome.jsp" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/admin/index.jsp" />
-        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/css/style.css" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/plugins/My97DatePicker/WdatePicker.js" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IMigrationDAO.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/MigrationDAOImpl.java" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/dataMigration/handle_content.jsp" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/dataSourceInfo/data_source_add.jsp" />
@@ -209,23 +253,35 @@
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/AssertUtils.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/DynamicBaseDAOImpl.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IDynamicBaseDAO.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmmigrationlog.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/ILogDAO.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/test/java/cc/blog/test/Demo.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/resources/spring/applicationContext-hibernate.xml" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/LogDAOImpl.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/test/java/cc/blog/test/Main.java" />
         <option value="$PROJECT_DIR$/../../../dos/Main.class" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/handlerMapping/DemoHandlerMapping.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/MigrationParamVO.java" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/js/datasource/group.js" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/IMigrationService.java" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/dataMigration/data_migration.jsp" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/ErrorCodeDesc.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IDynamicDAO.java" />
-        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/MigrationServiceImpl.java" />
         <option value="$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/MigrationController.java" />
         <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/DynamicDAOImpl.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/LogInfoVO.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmmigrationlog.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/IMigrationService.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/MigrationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IMigrationDAO.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/MigrationDAOImpl.java" />
+        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/log/log_info.jsp" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/ILogService.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/LogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/ILogDAO.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/LogDAOImpl.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/HandleLogVO.java" />
+        <option value="$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/LogController.java" />
+        <option value="$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmhandlemsglog.java" />
+        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/admin/index.jsp" />
+        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/log/detail_log_info.jsp" />
+        <option value="$PROJECT_DIR$/data-migration-web/src/main/webapp/css/style.css" />
       </list>
     </option>
   </component>
@@ -271,7 +327,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -317,86 +373,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-migration-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value=".idea" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -413,22 +397,22 @@
     <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\dataMigration" />
-      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\migrationConfig" />
-      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\resources" />
-      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\kettle" />
-      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\js" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.sinosoft.datamigration.service" />
+      <recent name="com.sinosoft.datamigration.vo" />
+      <recent name="com.sinosoft.datamigration.dao" />
+      <recent name="com.sinosoft.common.web.controller" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="com.sinosoft.datamigration.po" />
       <recent name="" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.sinosoft.datamigration.vo" />
-      <recent name="com.sinosoft.datamigration.dao" />
-      <recent name="com.sinosoft.datamigration.service" />
-      <recent name="com.sinosoft.common.web.controller" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\log" />
+      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\dataMigration" />
+      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\migrationConfig" />
+      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\resources" />
+      <recent name="D:\workspace\idea\sinosoft\data-migration\data-migration-web\src\main\webapp\jsp\kettle" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.data-migration">
@@ -1086,8 +1070,46 @@
       <workItem from="1506649803947" duration="21389000" />
       <workItem from="1506733784392" duration="22241000" />
       <workItem from="1507513972568" duration="15481000" />
-      <workItem from="1507598648378" duration="67000" />
+      <workItem from="1507598648378" duration="19867000" />
+      <workItem from="1507627565230" duration="1328000" />
     </task>
+    <task id="LOCAL-00001" summary="第一次idea提交git">
+      <created>1507600592427</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1507600592427</updated>
+    </task>
+    <task id="LOCAL-00002" summary="第一次idea提交git">
+      <created>1507601326791</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1507601326791</updated>
+    </task>
+    <task id="LOCAL-00003" summary="第一次idea提交git">
+      <created>1507601419583</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1507601419583</updated>
+    </task>
+    <task id="LOCAL-00004" summary="日志管理">
+      <created>1507628245774</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1507628245774</updated>
+    </task>
+    <task id="LOCAL-00005" summary="测试是否忽略">
+      <created>1507628713922</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1507628713922</updated>
+    </task>
+    <task id="LOCAL-00006" summary="测试是否忽略">
+      <created>1507628803447</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1507628803447</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1117,7 +1139,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323664000" />
+    <option name="totallyTimeSpent" value="344792000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1134,16 +1156,17 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.60294116" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.51960784" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.47058824" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.47058824" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5294118" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1156,7 +1179,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39258698" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3872549" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1174,6 +1196,12 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="第一次idea提交git" />
+    <MESSAGE value="日志管理" />
+    <MESSAGE value="测试是否忽略" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试是否忽略" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1200,7 +1228,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="168" />
+      <option name="time" value="171" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1209,219 +1237,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/IUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/test/java/cc/blog/test/Demo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/test/java/cc/blog/test/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../dos/Main.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/LogDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/software/jdk/jdk1.8.0_92/src.zip!/java/sql/Statement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="326" column="70" selection-start-line="326" selection-start-column="7" selection-end-line="326" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IBaseDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IDSInfoDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/DSInfoServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/BaseDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/DSInfoDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/DSInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="45" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/js/jquery.form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327616">
-          <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/HandlerMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327616">
-          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3018868">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/WEB-INF/springmvc-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.59322">
-          <caret line="66" column="19" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.6.RELEASE/spring-beans-4.1.6.RELEASE-sources.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="527" column="38" selection-start-line="527" selection-start-column="38" selection-end-line="527" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.6.RELEASE/spring-beans-4.1.6.RELEASE-sources.jar!/org/springframework/beans/factory/BeanFactoryUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="289" column="0" selection-start-line="289" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/plugins/jquery/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="775" column="31" selection-start-line="775" selection-start-column="31" selection-end-line="775" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1-sources.jar!/javax/servlet/GenericServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/handlerMapping/DemoHandlerMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0393701">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.1.6.RELEASE/spring-context-4.1.6.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46981627">
-          <caret line="1059" column="41" selection-start-line="1059" selection-start-column="41" selection-end-line="1059" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1120" column="0" selection-start-line="1120" selection-start-column="0" selection-end-line="1120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/support/WebContentGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.09434">
-          <caret line="358" column="7" selection-start-line="358" selection-start-column="7" selection-end-line="358" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/annotation/AnnotationMethodHandlerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28473413">
-          <caret line="197" column="10" selection-start-line="197" selection-start-column="10" selection-end-line="197" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/annotation/DefaultAnnotationHandlerMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03773585">
-          <caret line="79" column="27" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/RequestMappingInfoHandlerMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03773585">
-          <caret line="58" column="105" selection-start-line="58" selection-start-column="105" selection-end-line="58" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03773585">
-          <caret line="50" column="41" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/HandlerExecutionChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03773585">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.6.RELEASE/spring-webmvc-4.1.6.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.056410257">
@@ -1433,17 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327616">
           <caret line="478" column="12" selection-start-line="478" selection-start-column="12" selection-end-line="478" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmgroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="246" column="0" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
-          <folding>
-            <element signature="e#5527#5528#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1451,13 +1255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3309859">
           <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/MigrationDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1475,24 +1272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/migrationConfig/group_add.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2580647">
-          <caret line="186" column="68" selection-start-line="186" selection-start-column="68" selection-end-line="186" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/js/datasource/group.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.6.RELEASE/spring-web-4.1.6.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4">
-          <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1511,25 +1294,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/IMigrationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.759494">
-          <caret line="174" column="9" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/ResultDesc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33962265">
           <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/MigrationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="420" column="54" selection-start-line="420" selection-start-column="54" selection-end-line="420" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -1538,31 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="88" selection-start-line="70" selection-start-column="88" selection-end-line="70" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/ErrorCodeDesc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IDynamicDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="100" selection-start-line="77" selection-start-column="82" selection-end-line="77" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/MigrationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="452" column="0" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1570,14 +1313,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/migrationConfig/group_add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.096774">
+          <caret line="195" column="55" selection-start-line="195" selection-start-column="55" selection-end-line="195" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IDynamicDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="100" selection-start-line="77" selection-start-column="82" selection-end-line="77" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/DSInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6415094">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/DynamicDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6483705">
-          <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.044596914">
+          <caret line="70" column="38" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
           <folding>
             <marker date="1507536938650" expanded="true" signature="2369:2603" placeholder="select table... user_constraints" />
             <marker date="1507536938650" expanded="true" signature="2486:2602" placeholder="select r_con... user_constraints" />
@@ -1587,6 +1350,318 @@
             <marker date="1507536938650" expanded="true" signature="15265:15285" placeholder="select count... " />
             <marker date="1507536938650" expanded="true" signature="15265:15286" placeholder="select count... missingValue" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.1.6.RELEASE/spring-context-4.1.6.RELEASE-sources.jar!/org/springframework/stereotype/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3962264">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/DSInfoDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/util/ErrorCodeDesc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4768786">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/admin/js/DateUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7049743">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="184" column="12" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="12" />
+          <folding>
+            <marker date="1505816276952" expanded="true" signature="3031:3078" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/h-ui/css/H-ui.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.370229">
+          <caret line="11" column="24808" selection-start-line="11" selection-start-column="24808" selection-end-line="11" selection-end-column="24808" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/plugins/Hui-iconfont/1.0.7/iconfont.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.6.RELEASE/spring-web-4.1.6.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84682083">
+          <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/DSInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14647378">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/migrationConfig/tables_in_group_view.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1290324">
+          <caret line="3" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="309" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/dataSourceInfo/data_source_info.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8586955">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/admin/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5969125">
+          <caret line="204" column="23" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="23" />
+          <folding>
+            <marker date="1503912383470" expanded="true" signature="3031:3078" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/migrationConfig/group_info.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.451612">
+          <caret line="268" column="5" selection-start-line="255" selection-start-column="4" selection-end-line="268" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IMigrationDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6981132">
+          <caret line="97" column="4" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/IMigrationDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7358491">
+          <caret line="98" column="11" selection-start-line="98" selection-start-column="11" selection-end-line="98" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/MigrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.85763294">
+          <caret line="160" column="25" selection-start-line="160" selection-start-column="25" selection-end-line="160" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/LogDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="77" selection-start-line="53" selection-start-column="77" selection-end-line="53" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/ILogDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/LogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/IMigrationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="187" column="32" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/ILogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="90" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/dao/impl/MigrationDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6603774">
+          <caret line="130" column="81" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/service/impl/MigrationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37049744">
+          <caret line="593" column="36" selection-start-line="593" selection-start-column="36" selection-end-line="593" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/vo/HandleLogVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmdatasource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmgrouptable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmmigrationlog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7774869">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmhandlemsglog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2303665">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <folding>
+            <element signature="e#802#803#0" expanded="true" />
+            <element signature="e#838#839#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#946#947#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1486#1487#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-service/src/main/java/com/sinosoft/datamigration/po/Dmgroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="246" column="0" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+          <folding>
+            <element signature="e#5527#5528#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/java/com/sinosoft/common/web/controller/LogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="23" selection-start-line="86" selection-start-column="23" selection-end-line="86" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/log/log_info.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="179" selection-start-line="126" selection-start-column="44" selection-end-line="126" selection-end-column="179" />
+          <folding>
+            <marker date="1507623893697" expanded="true" signature="5595:5641" placeholder="..." />
+            <marker date="1507623893697" expanded="true" signature="5835:5881" placeholder="..." />
+            <marker date="1507623893697" expanded="true" signature="6073:6119" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/admin/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="17" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/dataSources.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/jsp/log/detail_log_info.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.290323">
+          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47311828">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data-migration-web/src/main/webapp/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.759563">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
