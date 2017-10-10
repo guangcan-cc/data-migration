@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>数据源信息</title>
+    <title>日志信息</title>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -19,8 +19,8 @@
 </head>
 <body>
 <nav class="breadcrumb">
-    <i class="Hui-iconfont">&#xe67f;</i> 数据源管理
-    <span class="c-gray en">&gt;</span> 数据源信息
+    <i class="Hui-iconfont">&#xe67f;</i> 日志管理
+    <span class="c-gray en">&gt;</span> 日志信息
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
         <i class="Hui-iconfont">&#xe68f;</i>
     </a>
@@ -30,13 +30,13 @@
     <div class="text-c">
         <div class="row cl">
             <div class="inline">
-                <label class="form-label col-sm-2">数据源名：</label>
+                <label class="form-label col-sm-2">组ID：</label>
                 <div class="formControls col-xs-3">
                     <input type="text" class="input-text radius" value="" name="dsName">
                 </div>
             </div>
             <div class="inline">
-                <label class="form-label col-sm-2">用户名：</label>
+                <label class="form-label col-sm-2">组名：</label>
                 <div class="formControls col-xs-3">
                     <input type="text" class="input-text radius" value="" name="username">
                 </div>
@@ -44,29 +44,31 @@
         </div>
         <div class="row cl">
             <div class="inline">
-                <label class="form-label col-sm-2">创建人：</label>
+                <label class="form-label col-sm-2">组类型：</label>
                 <div class="formControls col-xs-3">
                     <input type="text" class="input-text radius" value="" name="creator">
                 </div>
             </div>
             <div class="inline">
-                <label class="form-label col-sm-2">创建时间：</label>
+                <label class="form-label col-sm-2">执行人：</label>
                 <div class="formControls col-xs-3">
-                    <input name="startTime" type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text radius Wdate" style="width:120px;">
-                    -
-                    <input name="endTime" type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text radius Wdate" style="width:120px;">
+                    <input type="text" class="input-text radius" value="" name="creator">
                 </div>
             </div>
         </div>
         <div class="row cl">
             <div class="inline">
-                <label class="form-label col-sm-2">是否禁用：</label>
+                <label class="form-label col-sm-2">执行结果：</label>
                 <div class="formControls col-xs-3">
-                    <select name="isForbidden" class="select-default radius">
-                        <option value="">全部</option>
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-                    </select>
+                    <input type="text" class="input-text radius" value="" name="creator">
+                </div>
+            </div>
+            <div class="inline">
+                <label class="form-label col-sm-2">执行时间：</label>
+                <div class="formControls col-xs-3">
+                    <input name="startTime" type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text radius Wdate" style="width:120px;">
+                    -
+                    <input name="endTime" type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text radius Wdate" style="width:120px;">
                 </div>
             </div>
         </div>
