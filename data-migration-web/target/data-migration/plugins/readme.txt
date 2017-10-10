@@ -1,1 +1,0 @@
-javascript相关插件，不包含angluar的插件
