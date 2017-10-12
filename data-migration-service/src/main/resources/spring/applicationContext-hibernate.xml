@@ -62,11 +62,7 @@
 			<tx:method name="translateCode*" read-only="true" />
 			<tx:method name="show*" read-only="true" />
 			<tx:method name="executeRules*" read-only="true" />
-			<tx:method name="findPageFor*" read-only="true"  isolation="SERIALIZABLE" />
-			<tx:method name="findAll*" read-only="true" propagation="NEVER"
-				isolation="SERIALIZABLE" />
 			<tx:method name="*" propagation="REQUIRED" rollback-for="Throwable"/>
 		</tx:attributes>
 	</tx:advice>
-
 </beans>

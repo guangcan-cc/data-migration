@@ -101,4 +101,11 @@ public interface IMigrationDAO extends IBaseDAO {
      * @return
      */
     List<Dmgrouptable> queryAllTablesById(String groupId);
+
+    /**
+     * 删除关联表
+     * @param originaltable
+     * @param groupid
+     */
+    void deleteTableRefByTable(String originaltable, String groupid);
 }

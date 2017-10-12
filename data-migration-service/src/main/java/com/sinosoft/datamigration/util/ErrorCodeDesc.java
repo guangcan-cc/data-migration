@@ -25,12 +25,13 @@ public enum ErrorCodeDesc {
     GROUPNAME_IS_NULL("1019","请输入组名"),
     TIMEPARAM_IS_NULL("1020","请输入起止时间"),
     PARAMVALUE_IS_NULL("1021","请输入迁移业务号"),
-    ERROR_IN_DELETE_MID_TABLE("1022","删除中间表失败"),
-    ERROR_IN_EXTRACTED("1023","提数中间表过程失败"),
+    ERROR_IN_DELETE_MID_TABLE("1022","删除中间表数据失败，请检查是否存在中间表"),
+    ERROR_IN_EXTRACTED("1023","提数中间表过程失败，请校验提数脚本是否正确"),
     ERROR_IN_TABLE_HANDLE("1024","迁移表‘@tableName’创建/更新SQL出错"),
     ERROR_IN_MIGRATION("1025","迁移表‘@tableName’失败"),
     ERROR_IN_RESTORE("1026","还原表‘@tableName’失败"),
-    ERROR_IN_EXECUTE_PROCEDURE("1027","执行存储过程出错");
+    ERROR_IN_EXECUTE_PROCEDURE("1027","执行存储过程出错"),
+    FAILURE_IN_TABLE_DELETE("1028","删除失败，该表信息已被删除");
 
     private String code;
     private String desc;

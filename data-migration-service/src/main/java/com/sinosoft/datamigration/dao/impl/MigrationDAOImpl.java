@@ -130,4 +130,10 @@ public class MigrationDAOImpl extends BaseDAOImpl implements IMigrationDAO {
         String hql = "from Dmgrouptable where groupid=:groupId";
         return getSession().createQuery(hql).setString("groupId",groupId).list();
     }
+
+    @Override
+    public void deleteTableRefByTable(String tableName, String groupId) {
+        String hql = "delete from DmTableRef where groupId=:groupId and tableName=:tableName";
+        getSession().createQuery(hql).setString("groupId",groupId).setString("tableName",tableName).executeUpdate();
+    }
 }
