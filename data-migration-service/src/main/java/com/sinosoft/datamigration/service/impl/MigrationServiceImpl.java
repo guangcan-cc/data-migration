@@ -418,6 +418,9 @@ public class MigrationServiceImpl implements IMigrationService {
         if(count == -1){
             throw new NonePrintException(ErrorCodeDesc.ERROR_IN_EXTRACTED.getCode(),ErrorCodeDesc.ERROR_IN_EXTRACTED.getDesc());
         }
+        if(count == 0){
+            throw new NonePrintException(ErrorCodeDesc.NO_DATA_EXTRACTED.getCode(),ErrorCodeDesc.NO_DATA_EXTRACTED.getDesc());
+        }
         //生成正在执行的日志
         Dmmigrationlog dmmigrationlog = createMigrationLog(dmgroup,user);
         List<Dmhandlemsglog> dmhandlemsglogs = new ArrayList<>();
@@ -572,6 +575,9 @@ public class MigrationServiceImpl implements IMigrationService {
         int count = dynamicDAO.executeExtract(dmdatasource,dmgroup,paramVO);
         if(count == -1){
             throw new NonePrintException(ErrorCodeDesc.ERROR_IN_EXTRACTED.getCode(),ErrorCodeDesc.ERROR_IN_EXTRACTED.getDesc());
+        }
+        if(count == 0){
+            throw new NonePrintException(ErrorCodeDesc.NO_DATA_EXTRACTED.getCode(),ErrorCodeDesc.NO_DATA_EXTRACTED.getDesc());
         }
         //生成正在执行的日志
         Dmmigrationlog dmmigrationlog = createMigrationLog(dmgroup,user);

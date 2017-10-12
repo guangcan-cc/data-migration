@@ -152,22 +152,22 @@
         <table class="table table-border table-bg table-sort">
             <thead class="text-c">
             <tr>
-                <th>序号</th>
-                <th>原数据源</th>
-                <th>原用户</th>
-                <th>原表名</th>
-                <th>目标数据源</th>
-                <th>目标用户</th>
-                <th>目标表名</th>
-                <th>是否清理原表数据</th>
-                <th>执行时间</th>
-                <th>参数</th>
-                <th>存储过程</th>
-                <th>应迁移数量</th>
-                <th>实际迁移数量</th>
-                <th>失败数量</th>
-                <th>失败原因</th>
-                <th>是否已迁移</th>
+                <th style="width: 1.5%;">序号</th>
+                <th style="width: 3%;">原数据源</th>
+                <th style="width: 2%;">原用户</th>
+                <th style="width: 2%;">原表名</th>
+                <th style="width: 3%;">目标数据源</th>
+                <th style="width: 3%;">目标用户</th>
+                <th style="width: 3%;">目标表名</th>
+                <th style="width: 2.5%;">是否清理原表数据</th>
+                <th style="width: 3%;">执行时间</th>
+                <th style="width: 4%;">参数</th>
+                <th style="width: 4%;">存储过程</th>
+                <th style="width: 3%;">应迁移/还原数量</th>
+                <th style="width: 3%;">实际迁移/还原数量</th>
+                <th style="width: 3%;">失败数量</th>
+                <th style="width: 3%;">失败原因</th>
+                <th style="width: 1.5%;">是否已迁移/还原</th>
             </tr>
             </thead>
             <tbody class="text-c">
@@ -190,16 +190,19 @@
                         <fmt:formatDate value="${vo.dmhandlemsglog.handleendtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                     </td>
                     <td>${vo.dmhandlemsglog.migrationparam}</td>
-                    <td>${vo.dmhandlemsglog.procedurename}</td>
+                    <td>
+                        <a class="btn-link" href="javascript:void(0);" onclick="show_procedure(this);">${vo.dmhandlemsglog.procedurename}</a>
+                        <input type="hidden" value="${vo.dmhandlemsglog.procedure}">
+                    </td>
                     <td>${vo.dmhandlemsglog.datacount}</td>
                     <td>${vo.dmhandlemsglog.handlecount}</td>
                     <td>${vo.dmhandlemsglog.failedcount}</td>
-                    <td><a href="javascript:void(0);" onclick="">查看</a></td>
+                    <td><a class="btn-link" href="javascript:void(0);" onclick="show_msg('${vo.dmhandlemsglog.failedreason}');">查看</a></td>
                     <td>
                         <c:if test="${vo.dmhandlemsglog.issuccess == 1}">
                             <div class='btn btn-secondary radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a7;</i></div>
                         </c:if>
-                        <c:if test="${vo.dmhandlemsglog.issuccess == 2}">
+                        <c:if test="${vo.dmhandlemsglog.issuccess == 0}">
                             <div class='btn btn-danger radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a6;</i></div>
                         </c:if>
                     </td>
@@ -216,6 +219,30 @@
 <script type="text/javascript" src="<c:url value="/plugins/My97DatePicker/WdatePicker.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.showLoading.min.js"/>"></script>
 <script type="text/javascript">
+
+    function show_procedure($this){
+        var procedureContent =  $($this).next().val();
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' + procedureContent + '</div>'
+        });
+    }
+
+    function show_msg(msg){
+        if(msg == ""){
+            return ;
+        }
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' + msg + '</div>'
+        });
+    }
 
 </script>
 </body>

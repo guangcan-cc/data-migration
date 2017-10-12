@@ -190,7 +190,7 @@
                                         "<td>" + tableInfo.targetdsusername + "</td>" +
                                         "<td>" + tableInfo.targettable + "</td>" +
                                         "<td>" + (tableInfo.iscleanup == 1 ? "是" : "否") + "</td>" +
-                                        "<td><a href='javascript:void(0);' onclick='showDetailView(\""+ tableInfo.id +"\");'>查看</a></td>" +
+                                        "<td><a class='btn-link' href='javascript:void(0);' onclick='showDetailView(\""+ tableInfo.id +"\");'>查看</a></td>" +
                                     "</tr>";
                         $("#tbody").append(trHtml);
                     }
@@ -275,21 +275,25 @@
             layer.alert('请选择需要删除的一条信息', {icon: 6});
             return ;
         }
-        $.ajax({
-            url:"${ctx}/migration/ajaxDeleteTableInfo?id=" + id,
-            type:"post",
-            dataType:"json",
-            success:function(result){
-                if(result.code == 0){
-                    layer.msg(result.msg);
-                    ajaxQueryInfo(currentPage);
-                } else {
-                    layer.msg(result.msg);
+        layer.confirm('确定要删除？', {
+            btn: ['删除','取消'] //按钮
+        }, function(){
+            $.ajax({
+                url:"${ctx}/migration/ajaxDeleteTableInfo?id=" + id,
+                type:"post",
+                dataType:"json",
+                success:function(result){
+                    if(result.code == 0){
+                        layer.msg(result.msg);
+                        ajaxQueryInfo(currentPage);
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                },
+                error:function(){
+                    layer.alert('网络错误', {icon: 6});
                 }
-            },
-            error:function(){
-                layer.alert('网络错误', {icon: 6});
-            }
+            });
         });
     }
 

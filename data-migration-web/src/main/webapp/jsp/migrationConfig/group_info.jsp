@@ -117,7 +117,6 @@
                 <th>是否发送邮件</th>
                 <th>创建人</th>
                 <th>创建时间</th>
-                <th>详情</th>
                 <th>是否禁用</th>
             </tr>
             </thead>
@@ -174,7 +173,6 @@
                                         "<td>" + (groupInfo.issendemail == 1 ? "是" : "否") + "</td>" +
                                         "<td>" + groupInfo.creator + "</td>" +
                                         "<td>" + formatDate(groupInfo.createtime) + "</td>" +
-                                        "<td><a href='#'>查看</a></td>" +
                                         "<td>" + (groupInfo.isforbidden == 1 ? "是" : "否") + "</td>" +
                                     "</tr>";
                         $("#tbody").append(trHtml);

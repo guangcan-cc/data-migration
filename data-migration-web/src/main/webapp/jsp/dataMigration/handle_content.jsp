@@ -69,10 +69,10 @@
                         for(var i = 0; i < dmgrouptables.length; i++){
                             var dmgrouptable = dmgrouptables[i];
                             if(dmgrouptable.handletargettable != null){
-                                handleContent += dmgrouptable.handletargettable + "<br>";
+                                handleContent += dmgrouptable.handletargettable.replace(/\n/g,"<br>") + "<br><br>";
                             }
-                            handleProcedure += dmgrouptable.handleprocedure + "<br>";
-                            restoreProcedure += dmgrouptable.restoreprocedure + "<br>";
+                            handleProcedure += dmgrouptable.handleprocedure.replace(/\n/g,"<br>") + "<br><br>";
+                            restoreProcedure += dmgrouptable.restoreprocedure.replace(/\n/g,"<br>") + "<br><br>";
                         }
                         $("[name='handleContent']").html(handleContent);
                         $("[name='handleProcedure']").html(handleProcedure);

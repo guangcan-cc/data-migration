@@ -87,7 +87,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
             stat = conn.createStatement();
             StringBuilder produreBuilder = new StringBuilder("create or replace procedure ");
             produreBuilder.append(procedureName);
-            produreBuilder.append(" is ").append(" begin ");
+            produreBuilder.append(" is \n").append("begin \n");
             if(dmgroup.getIsdataextracted().equals(ConstantUtils.IS_EXTRACTED)){
 
                 produreBuilder.append(createPartInsertSQL(dmgrouptable.getTargettable(),
@@ -96,7 +96,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
                 if(!AssertUtils.isEmpty(relatedTables)){
                     for(String tableName : relatedTables){
 
-                        String targetTableName = tableName + "his";
+                        String targetTableName = tableName + "HIS";
 
                         produreBuilder.append(createPartInsertSQL(targetTableName,
                                 tableName,dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
@@ -125,7 +125,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
             } else {//todo:不需要提数的
 
             }
-            produreBuilder.append(" commit; ").append(" end; ");
+            produreBuilder.append("commit; \n").append("end;");
             stat.executeUpdate(produreBuilder.toString());
             return produreBuilder.toString();
         } catch (SQLException e) {
@@ -145,7 +145,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
             stat = conn.createStatement();
             StringBuilder produreBuilder = new StringBuilder("create or replace procedure ");
             produreBuilder.append(restoreProcedureName);
-            produreBuilder.append(" is ").append(" begin ");
+            produreBuilder.append(" is \n").append("begin \n");
             if(dmgroup.getIsdataextracted().equals(ConstantUtils.IS_EXTRACTED)){
 
                 produreBuilder.append(createPartInsertSQL(dmgrouptable.getOriginaltable(),
@@ -154,7 +154,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
                 if(!AssertUtils.isEmpty(relatedTables)){
                     for(String tableName : relatedTables){
 
-                        String targetTableName = tableName + "his";
+                        String targetTableName = tableName + "HIS";
 
                         produreBuilder.append(createPartInsertSQL(tableName,
                                 targetTableName,dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
@@ -168,7 +168,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
                 if(!AssertUtils.isEmpty(relatedTables)){
                     for(String tableName : relatedTables){
 
-                        produreBuilder.append(createPartDeleteSQL(tableName + "his",dmgroup.getMidtablename(),
+                        produreBuilder.append(createPartDeleteSQL(tableName + "HIS",dmgroup.getMidtablename(),
                                 dmgroup.getDefaultcondition()));
 
                     }
@@ -180,7 +180,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
             } else {//todo:不需要提数的
 
             }
-            produreBuilder.append(" commit; ").append(" end; ");
+            produreBuilder.append("commit; \n").append("end;");
             stat.executeUpdate(produreBuilder.toString());
             return produreBuilder.toString();
         } catch (SQLException e) {
@@ -200,11 +200,11 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
      * @return
      */
     private String createPartInsertSQL(String targetTableName, String originalTableName, String midTableName, String condition){
-        return " insert into " + targetTableName +
+        return "  insert into " + targetTableName +
                 " select * from " + originalTableName +
                 " where " + condition +
                 " in ( select " + condition +
-                " from " + midTableName + ");";
+                " from " + midTableName + ");\n ";
     }
 
     /**
@@ -215,10 +215,10 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
      * @return
      */
     private String createPartDeleteSQL(String tableName, String midTableName, String condition){
-        return " delete from " + tableName +
+        return "  delete from " + tableName +
                 " where " + condition +
                 " in (select " + condition +
-                " from " + midTableName + ");";
+                " from " + midTableName + ");\n ";
     }
 
     @Override
