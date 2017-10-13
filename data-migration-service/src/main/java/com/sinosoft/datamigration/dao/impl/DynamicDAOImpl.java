@@ -29,7 +29,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
     private static final Logger logger = LoggerFactory.getLogger(DynamicDAOImpl.class);
 
     @Override
-    public boolean executeSQL(Dmdatasource dmdatasource, String sql, Object... params){
+    public int executeSQL(Dmdatasource dmdatasource, String sql, Object... params) throws SQLException {
         Connection conn = null;
         PreparedStatement pstat = null;
         try {
@@ -41,15 +41,10 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
                     pstat.setObject(index++, param);
                 }
             }
-            pstat.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            logger.error("执行SQL出错！");
+            return pstat.executeUpdate();
         } finally {
             DBManager.release(conn, pstat, null);
         }
-        return false;
     }
 
     @Override
@@ -79,146 +74,44 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
     }
 
     @Override
-    public String createMigrationProduce(Dmdatasource dmdatasource, String procedureName, Dmgrouptable dmgrouptable, Dmgroup dmgroup, List<String> relatedTables) {
+    public void createOrReplaceProduce(Dmdatasource dmdatasource, List<Dmgrouptable> dmgrouptables, Dmgroup dmgroup) throws SQLException {
         Connection conn = null;
         Statement stat = null;
         try {
             conn = DBManager.getConnection(DBManager.getOracleURL(dmdatasource),dmdatasource.getUsername(),dmdatasource.getPassword());
             stat = conn.createStatement();
-            StringBuilder produreBuilder = new StringBuilder("create or replace procedure ");
-            produreBuilder.append(procedureName);
-            produreBuilder.append(" is \n").append("begin \n");
-            if(dmgroup.getIsdataextracted().equals(ConstantUtils.IS_EXTRACTED)){
+            //迁移存储过程
+            StringBuilder handlePackage = new StringBuilder("create or replace package ");
+            handlePackage.append(dmgroup.getId());
+            handlePackage.append(" as ");
 
-                produreBuilder.append(createPartInsertSQL(dmgrouptable.getTargettable(),
-                        dmgrouptable.getOriginaltable(),dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-
-                if(!AssertUtils.isEmpty(relatedTables)){
-                    for(String tableName : relatedTables){
-
-                        String targetTableName = tableName + "HIS";
-
-                        produreBuilder.append(createPartInsertSQL(targetTableName,
-                                tableName,dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-
-                    }
-                }
-                if(ConstantUtils.IS_CLEANUP.equals(dmgrouptable.getIscleanup())){
-                    /**
-                     * 删除
-                     * 先删除关联表
-                     * 再删除主表
-                     */
-                    if(!AssertUtils.isEmpty(relatedTables)){
-                        for(String tableName : relatedTables){
-
-                            produreBuilder.append(createPartDeleteSQL(tableName,
-                                    dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-
-                        }
-                    }
-
-                    produreBuilder.append(createPartDeleteSQL(dmgrouptable.getOriginaltable(),
-                            dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-
-                }
-            } else {//todo:不需要提数的
-
+            for(Dmgrouptable dmgrouptable : dmgrouptables){
+                handlePackage.append(" procedure ")
+                        .append(dmgrouptable.getHandleprocedurename())
+                        .append(";");
+                handlePackage.append(" procedure ")
+                        .append(dmgrouptable.getRestoreprocedurename())
+                        .append(";");
             }
-            produreBuilder.append("commit; \n").append("end;");
-            stat.executeUpdate(produreBuilder.toString());
-            return produreBuilder.toString();
-        } catch (SQLException e) {
-            logger.error("执行存储过程SQL异常：{}" , e.getMessage());
-            return null;
+            handlePackage.append(" end ").append(dmgroup.getId()).append(";");
+            stat.executeUpdate(handlePackage.toString());
+
+            StringBuilder handlePackageBody = new StringBuilder("create or replace package body ");
+            handlePackageBody.append(dmgroup.getId());
+            handlePackageBody.append(" as ");
+
+            for(Dmgrouptable dmgrouptable : dmgrouptables){
+                handlePackageBody.append(dmgrouptable.getHandleprocedure());
+                handlePackageBody.append(dmgrouptable.getRestoreprocedure());
+            }
+
+            handlePackageBody.append(" end ").append(dmgroup.getId()).append(";");
+
+            stat.executeUpdate(handlePackageBody.toString());
+
         } finally {
             DBManager.release(conn, stat, null);
         }
-    }
-
-    @Override
-    public String createRestoreProduce(Dmdatasource dmdatasource, String restoreProcedureName, Dmgrouptable dmgrouptable, Dmgroup dmgroup, List<String> relatedTables) {
-        Connection conn = null;
-        Statement stat = null;
-        try {
-            conn = DBManager.getConnection(DBManager.getOracleURL(dmdatasource),dmdatasource.getUsername(),dmdatasource.getPassword());
-            stat = conn.createStatement();
-            StringBuilder produreBuilder = new StringBuilder("create or replace procedure ");
-            produreBuilder.append(restoreProcedureName);
-            produreBuilder.append(" is \n").append("begin \n");
-            if(dmgroup.getIsdataextracted().equals(ConstantUtils.IS_EXTRACTED)){
-
-                produreBuilder.append(createPartInsertSQL(dmgrouptable.getOriginaltable(),
-                        dmgrouptable.getTargettable(),dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-
-                if(!AssertUtils.isEmpty(relatedTables)){
-                    for(String tableName : relatedTables){
-
-                        String targetTableName = tableName + "HIS";
-
-                        produreBuilder.append(createPartInsertSQL(tableName,
-                                targetTableName,dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-                    }
-                }
-                /**
-                 * 删除
-                 * 先删除关联表
-                 * 再删除主表
-                 */
-                if(!AssertUtils.isEmpty(relatedTables)){
-                    for(String tableName : relatedTables){
-
-                        produreBuilder.append(createPartDeleteSQL(tableName + "HIS",dmgroup.getMidtablename(),
-                                dmgroup.getDefaultcondition()));
-
-                    }
-                }
-
-                produreBuilder.append(createPartDeleteSQL(dmgrouptable.getTargettable(),
-                        dmgroup.getMidtablename(),dmgroup.getDefaultcondition()));
-
-            } else {//todo:不需要提数的
-
-            }
-            produreBuilder.append("commit; \n").append("end;");
-            stat.executeUpdate(produreBuilder.toString());
-            return produreBuilder.toString();
-        } catch (SQLException e) {
-            logger.error("执行存储过程SQL异常：{}" , e.getMessage());
-            return null;
-        } finally {
-            DBManager.release(conn, stat, null);
-        }
-    }
-
-    /**
-     * 创建插入片段SQL
-     * @param targetTableName
-     * @param originalTableName
-     * @param midTableName
-     * @param condition
-     * @return
-     */
-    private String createPartInsertSQL(String targetTableName, String originalTableName, String midTableName, String condition){
-        return "  insert into " + targetTableName +
-                " select * from " + originalTableName +
-                " where " + condition +
-                " in ( select " + condition +
-                " from " + midTableName + ");\n ";
-    }
-
-    /**
-     * 删除片段SQL
-     * @param tableName
-     * @param midTableName
-     * @param condition
-     * @return
-     */
-    private String createPartDeleteSQL(String tableName, String midTableName, String condition){
-        return "  delete from " + tableName +
-                " where " + condition +
-                " in (select " + condition +
-                " from " + midTableName + ");\n ";
     }
 
     @Override
@@ -337,16 +230,15 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
     }
 
     @Override
-    public boolean deleteDataInMidTable(Dmdatasource dmdatasource, Dmgroup dmgroup) {
+    public int deleteDataInMidTable(Dmdatasource dmdatasource, Dmgroup dmgroup) throws SQLException {
         String sql = "delete from " + dmgroup.getMidtablename();
         return executeSQL(dmdatasource,sql);
     }
 
     @Override
-    public int executeExtract(Dmdatasource dmdatasource, Dmgroup dmgroup, MigrationParamVO paramVO) {
-        boolean result = false;
+    public int executeExtract(Dmdatasource dmdatasource, Dmgroup dmgroup, MigrationParamVO paramVO) throws SQLException {
         if("1".equals(paramVO.getParamType())){
-            result = executeSQL(dmdatasource,dmgroup.getExtractscript(),paramVO.getStartTime(),paramVO.getEndTime());
+            executeSQL(dmdatasource,dmgroup.getExtractscript(),paramVO.getStartTime(),paramVO.getEndTime());
         } else {
             String[] paramValue = paramVO.getParamValue().split(",");
             StringBuilder paramBuilder = new StringBuilder();
@@ -354,10 +246,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
                 paramBuilder.append("?,");
             }
             paramBuilder.deleteCharAt(paramBuilder.length() - 1);
-            result = executeSQL(dmdatasource,dmgroup.getExtractscript().replace("?",paramBuilder.toString()),paramValue);
-        }
-        if(!result){
-            return -1;
+            executeSQL(dmdatasource,dmgroup.getExtractscript().replace("?",paramBuilder.toString()),paramValue);
         }
         Connection conn = null;
         PreparedStatement pstat = null;
@@ -367,13 +256,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
             String sql = "select count(*) from " + dmgroup.getMidtablename();
             pstat = conn.prepareStatement(sql);
             rs = pstat.executeQuery();
-            if(rs.next()){
-                return rs.getInt(1);
-            }
-            return -1;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
+            return rs.getInt(1);
         } finally {
             DBManager.release(conn, pstat, rs);
         }

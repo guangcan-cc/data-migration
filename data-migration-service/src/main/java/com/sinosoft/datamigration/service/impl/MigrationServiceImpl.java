@@ -8,9 +8,7 @@ import com.sinosoft.datamigration.dao.IMigrationDAO;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.*;
 import com.sinosoft.datamigration.service.IMigrationService;
-import com.sinosoft.datamigration.util.AssertUtils;
-import com.sinosoft.datamigration.util.ConstantUtils;
-import com.sinosoft.datamigration.util.ErrorCodeDesc;
+import com.sinosoft.datamigration.util.*;
 import com.sinosoft.datamigration.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +28,10 @@ import java.util.UUID;
 public class MigrationServiceImpl implements IMigrationService {
 
     private static final Logger logger = LoggerFactory.getLogger(MigrationServiceImpl.class);
+
+    private static final String MAIL_SERVER = "smtp.qq.com";
+    private static final String MAIL_SENDER = "294093292@qq.com";
+    private static final String MAIL_LOGIN_AUTH_CODE = "jhxvtwxnvsnlbhaj";//授权码
 
     @Resource
     private IMigrationDAO migrationDao;
@@ -81,7 +83,7 @@ public class MigrationServiceImpl implements IMigrationService {
         //校验是否被关联
         String _tableName = migrationDao.queryTableByRefInGroup(dmgrouptable.getGroupid(),dmgrouptable.getOriginaltable());
         if(_tableName != null){
-            throw new NonePrintException(ErrorCodeDesc.TABLE_IN_GROUP_REPEAT.getCode(),ErrorCodeDesc.TABLE_IN_GROUP_REPEAT.getDesc().replace("@tableName",_tableName));
+            throw new NonePrintException(ErrorCodeDesc.TABLE_IN_GROUP_RELATED.getCode(),ErrorCodeDesc.TABLE_IN_GROUP_RELATED.getDesc().replace("@tableName",_tableName));
         }
         //查询关联表
         Dmdatasource dmdatasource = dsInfoDAO.queryDSInfoById(dmgrouptable.getOriginaldsid());
@@ -92,7 +94,7 @@ public class MigrationServiceImpl implements IMigrationService {
         if(!AssertUtils.isEmpty(relatedTables)){
             dmTableRefs = new ArrayList<>();
             for(String tableName : relatedTables){
-                _dmgrouptable = migrationDao.queryTableByTableNameAndGroupId(dmgrouptable.getGroupid(),tableName);
+                _dmgrouptable = migrationDao.queryTableByTableNameAndGroupId(dmgrouptable.getGroupid(),tableName.toLowerCase());
                 if(_dmgrouptable != null){
                     throw new NonePrintException(ErrorCodeDesc.RELATED_TABLE_IN_GROUP.getCode(),ErrorCodeDesc.RELATED_TABLE_IN_GROUP.getDesc().replace("@tableName",tableName));
                 }
@@ -103,24 +105,25 @@ public class MigrationServiceImpl implements IMigrationService {
                 }
                 DmTableRef dmTableRef = new DmTableRef();
                 dmTableRef.setGroupId(dmgrouptable.getGroupid());
-                dmTableRef.setTableRef(tableName);
+                dmTableRef.setTableRef(tableName.toLowerCase());
                 dmTableRef.setTableName(dmgrouptable.getOriginaltable());
                 dmTableRefs.add(dmTableRef);
             }
             //批量插入关联表信息
             migrationDao.batchPO(dmTableRefs);
         }
+
+        Dmgroup dmgroup = migrationDao.findById(Dmgroup.class,dmgrouptable.getGroupid());
+
         //生成存储过程
         String dateTime = String.valueOf(new Date().getTime());
         String migrationProcedureName = "MIGRATION_" + dateTime;
-        String migrationProcedure = dynamicDAO.createMigrationProduce(dmdatasource,migrationProcedureName,
-                dmgrouptable,migrationDao.findById(Dmgroup.class,dmgrouptable.getGroupid()),relatedTables);
-        if(migrationProcedure == null){
-            throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_PROCEDURE.getCode(),ErrorCodeDesc.FAILURE_IN_PROCEDURE.getDesc());
-        }
+        String migrationProcedure = SQLUtils.createMigrationProduce(migrationProcedureName,
+                dmgrouptable,dmgroup,relatedTables);
+
         String restoreProcedureName = "RESTORE_" + dateTime;
-        String restoreProcedure = dynamicDAO.createRestoreProduce(dmdatasource,restoreProcedureName,
-                dmgrouptable,migrationDao.findById(Dmgroup.class,dmgrouptable.getGroupid()),relatedTables);
+        String restoreProcedure = SQLUtils.createRestoreProduce(restoreProcedureName,
+                dmgrouptable,dmgroup,relatedTables);
 
         dmgrouptable.setHandleprocedurename(migrationProcedureName);
         dmgrouptable.setHandleprocedure(migrationProcedure);
@@ -128,8 +131,20 @@ public class MigrationServiceImpl implements IMigrationService {
         dmgrouptable.setRestoreprocedure(restoreProcedure);
         dmgrouptable.setHandletargettable("create table " + dmgrouptable.getTargettable() +
                 " as select * from " + dmgrouptable.getOriginaltable() + " where 1=2");
+
+        List<Dmgrouptable> dmgrouptableList = migrationDao.findTablesByGroupId(dmgrouptable.getGroupid());
+        dmgrouptableList.add(dmgrouptable);
+
+        try {
+            dynamicDAO.createOrReplaceProduce(dmdatasource, dmgrouptableList, dmgroup);
+        } catch (SQLException e) {
+            throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_PROCEDURE.getCode(),ErrorCodeDesc.FAILURE_IN_PROCEDURE.getDesc());
+        }
+
         migrationDao.insertPO(dmgrouptable);
     }
+
+
 
     @Override
     public boolean checkTableInfoInOthers(String groupId, String tableName) throws NonePrintException {
@@ -293,14 +308,20 @@ public class MigrationServiceImpl implements IMigrationService {
             throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getCode(),ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getDesc());
         }
         _dmgrouptable.setHandleprocedure(handleProcedure);
-        migrationDao.updatePO(_dmgrouptable);
 
         Dmdatasource dmdatasource = dsInfoDAO.findById(Dmdatasource.class,_dmgrouptable.getOriginaldsid());
         if(dmdatasource == null){
             throw new NonePrintException(ErrorCodeDesc.DATASOURCE_NOT_EXSIT.getCode(),ErrorCodeDesc.DATASOURCE_NOT_EXSIT.getDesc());
         }
         //修改存储过程
-        dynamicDAO.updateProcedure(handleProcedure,dmdatasource);
+        Dmgroup dmgroup = migrationDao.findById(Dmgroup.class, _dmgrouptable.getGroupid());
+        List<Dmgrouptable> dmgrouptables = migrationDao.findTablesByGroupId(_dmgrouptable.getGroupid());
+        try {
+            dynamicDAO.createOrReplaceProduce(dmdatasource, dmgrouptables, dmgroup);
+        } catch (SQLException e) {
+            throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_PROCEDURE.getCode(),ErrorCodeDesc.FAILURE_IN_PROCEDURE.getDesc());
+        }
+        migrationDao.updatePO(_dmgrouptable);
     }
 
     @Override
@@ -310,14 +331,20 @@ public class MigrationServiceImpl implements IMigrationService {
             throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getCode(),ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getDesc());
         }
         _dmgrouptable.setRestoreprocedure(retoreProcedure);
-        migrationDao.updatePO(_dmgrouptable);
 
         Dmdatasource dmdatasource = dsInfoDAO.findById(Dmdatasource.class,_dmgrouptable.getOriginaldsid());
         if(dmdatasource == null){
             throw new NonePrintException(ErrorCodeDesc.DATASOURCE_NOT_EXSIT.getCode(),ErrorCodeDesc.DATASOURCE_NOT_EXSIT.getDesc());
         }
         //修改存储过程
-        dynamicDAO.updateProcedure(retoreProcedure,dmdatasource);
+        Dmgroup dmgroup = migrationDao.findById(Dmgroup.class, _dmgrouptable.getGroupid());
+        List<Dmgrouptable> dmgrouptables = migrationDao.findTablesByGroupId(_dmgrouptable.getGroupid());
+        try {
+            dynamicDAO.createOrReplaceProduce(dmdatasource, dmgrouptables, dmgroup);
+        } catch (SQLException e) {
+            throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_PROCEDURE.getCode(),ErrorCodeDesc.FAILURE_IN_PROCEDURE.getDesc());
+        }
+        migrationDao.updatePO(_dmgrouptable);
     }
 
     @Override
@@ -409,18 +436,41 @@ public class MigrationServiceImpl implements IMigrationService {
          * 4、执行存储过程
          */
         // first
-        if(!dynamicDAO.deleteDataInMidTable(dmdatasource,dmgroup)){
+        try {
+            dynamicDAO.deleteDataInMidTable(dmdatasource,dmgroup);
+        } catch (SQLException e) {
             throw new NonePrintException(ErrorCodeDesc.ERROR_IN_DELETE_MID_TABLE.getCode(),ErrorCodeDesc.ERROR_IN_DELETE_MID_TABLE.getDesc());
         }
+
         // second 执行提数脚本
         //查询提数了多少条数据
-        int count = dynamicDAO.executeExtract(dmdatasource,dmgroup,paramVO);
-        if(count == -1){
+        int count = 0;
+        try {
+            count = dynamicDAO.executeExtract(dmdatasource,dmgroup,paramVO);
+        } catch (SQLException e) {
             throw new NonePrintException(ErrorCodeDesc.ERROR_IN_EXTRACTED.getCode(),ErrorCodeDesc.ERROR_IN_EXTRACTED.getDesc());
         }
         if(count == 0){
             throw new NonePrintException(ErrorCodeDesc.NO_DATA_EXTRACTED.getCode(),ErrorCodeDesc.NO_DATA_EXTRACTED.getDesc());
         }
+
+        //迁移前执行sql
+        for(Dmgrouptable dmgrouptable : dmgrouptableList){
+            // third 创建/更新历史表SQL
+            String[] handleTargetTable = dmgrouptable.getHandletargettable().replaceAll("\\n","").split(";");
+            for(String handleSQL : handleTargetTable){
+                if(AssertUtils.isEmpty(handleSQL)){
+                    continue;
+                }
+                try {
+                    dynamicDAO.executeSQL(dmdatasource, handleSQL);
+                }catch (SQLException e){
+                    throw new NonePrintException(ErrorCodeDesc.ERROR_IN_TABLE_HANDLE.getCode(),
+                            ErrorCodeDesc.ERROR_IN_TABLE_HANDLE.getDesc().replace("@tableName",dmgrouptable.getOriginaltable()));
+                }
+            }
+        }
+
         //生成正在执行的日志
         Dmmigrationlog dmmigrationlog = createMigrationLog(dmgroup,user);
         List<Dmhandlemsglog> dmhandlemsglogs = new ArrayList<>();
@@ -439,30 +489,25 @@ public class MigrationServiceImpl implements IMigrationService {
                 dmhandlemsglog.setMigrationparam(paramVO.getParamValue());
             }
 
-            // third 创建/更新历史表SQL
-            String[] handleTargetTable = dmgrouptable.getHandletargettable().replaceAll("\\n","").split(";");
-            boolean errorFlag = false;
-            for(String handleSQL : handleTargetTable){
-                if(AssertUtils.isEmpty(handleSQL)){
-                    continue;
-                }
-                if(!dynamicDAO.executeSQL(dmdatasource,handleSQL)){
-                    dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog,count,
-                            ErrorCodeDesc.ERROR_IN_TABLE_HANDLE.getDesc().replace("@tableName",dmgrouptable.getOriginaltable())));
-                    errorFlag = true;
-                    break;
-                }
-            }
-            if(errorFlag){
-                continue;
-            }
             //执行存储过程
             try {
                 dynamicDAO.executeProcedure(dmdatasource,dmgrouptable.getHandleprocedurename());
             } catch (NonePrintException e) {
-                //如果执行存储过程出错，记录日志
-                dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog,count,
-                        ErrorCodeDesc.ERROR_IN_MIGRATION.getDesc().replace("@tableName",dmgrouptable.getOriginaltable())));
+                //如果执行存储过程出错，记录日志并发送邮箱
+                String failedMsg = ErrorCodeDesc.ERROR_IN_MIGRATION.getDesc().
+                        replace("@tableName",dmgrouptable.getOriginaltable());
+
+                dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog, count, failedMsg));
+
+                if("1".equals(dmgroup.getIssendemail())){
+                    String emailSet = dmgroup.getEmailset();
+                    if(AssertUtils.isEmpty(emailSet)){
+                        continue;
+                    }
+
+                    MailUtils.sendEmail(MAIL_SERVER,MAIL_SENDER,MAIL_LOGIN_AUTH_CODE,MAIL_SENDER,
+                            emailSet.split(";"),"迁移失败",failedMsg,"text/html;charset=utf-8");
+                }
                 continue;
             }
             dmhandlemsglogs.add(createMigrationLogForSuccess(dmhandlemsglog,count));
@@ -567,13 +612,17 @@ public class MigrationServiceImpl implements IMigrationService {
          * 4、执行存储过程
          */
         // first
-        if(!dynamicDAO.deleteDataInMidTable(dmdatasource,dmgroup)){
+        try {
+            dynamicDAO.deleteDataInMidTable(dmdatasource,dmgroup);
+        } catch (SQLException e) {
             throw new NonePrintException(ErrorCodeDesc.ERROR_IN_DELETE_MID_TABLE.getCode(),ErrorCodeDesc.ERROR_IN_DELETE_MID_TABLE.getDesc());
         }
         // second 执行提数脚本
         //查询提数了多少条数据
-        int count = dynamicDAO.executeExtract(dmdatasource,dmgroup,paramVO);
-        if(count == -1){
+        int count = 0;
+        try {
+            count = dynamicDAO.executeExtract(dmdatasource,dmgroup,paramVO);
+        } catch (SQLException e) {
             throw new NonePrintException(ErrorCodeDesc.ERROR_IN_EXTRACTED.getCode(),ErrorCodeDesc.ERROR_IN_EXTRACTED.getDesc());
         }
         if(count == 0){
@@ -602,8 +651,19 @@ public class MigrationServiceImpl implements IMigrationService {
                 dynamicDAO.executeProcedure(dmdatasource, dmgrouptable.getRestoreprocedurename());
             } catch (NonePrintException e){
                 //如果执行存储过程出错，记录日志
-                dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog,count,
-                        ErrorCodeDesc.ERROR_IN_RESTORE.getDesc().replace("@tableName",dmgrouptable.getOriginaltable())));
+                String failedMsg = ErrorCodeDesc.ERROR_IN_RESTORE.getDesc().replace("@tableName",dmgrouptable.getOriginaltable());
+                dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog,count,failedMsg));
+
+                if("1".equals(dmgroup.getIssendemail())){
+                    String emailSet = dmgroup.getEmailset();
+                    if(AssertUtils.isEmpty(emailSet)){
+                        continue;
+                    }
+
+                    MailUtils.sendEmail(MAIL_SERVER,MAIL_SENDER,MAIL_LOGIN_AUTH_CODE,MAIL_SENDER,
+                            emailSet.split(";"),"还原失败",failedMsg,"text/html;charset=utf-8");
+                }
+
                 continue;
             }
             dmhandlemsglogs.add(createMigrationLogForSuccess(dmhandlemsglog,count));

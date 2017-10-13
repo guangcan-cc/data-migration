@@ -13,7 +13,7 @@ public enum ErrorCodeDesc {
     TABLE_IN_GROUP_REPEAT("1007","该组已配置该表"),
     TABLE_IN_GROUP_RELATED("1008","该表已被表@tableName关联迁移，无法单独配置！"),
     RELATED_TABLE_IN_GROUP("1009","关联表@tableName已在组配置中，无法关联迁移"),
-    FAILURE_IN_PROCEDURE("1010","创建存储过程失败"),
+    FAILURE_IN_PROCEDURE("1010","创建或更新存储过程失败"),
     FAILURE_IN_TABLE_UPDATE("1011","修改失败，该表信息已被删除"),
     TABLE_NOT_EXSIT("1012","表信息不存在"),
     DATASOURCE_NOT_EXSIT("1013","数据源不存在"),
@@ -32,7 +32,8 @@ public enum ErrorCodeDesc {
     ERROR_IN_RESTORE("1026","还原表‘@tableName’失败"),
     ERROR_IN_EXECUTE_PROCEDURE("1027","执行存储过程出错"),
     FAILURE_IN_TABLE_DELETE("1028","删除失败，该表信息已被删除"),
-    NO_DATA_EXTRACTED("1029","提取数据为0，请校验参数条件范围内是否存在数据");
+    NO_DATA_EXTRACTED("1029","提取数据为0，请校验参数条件范围内是否存在数据"),
+    ERROR_IN_SQL("1030","SQL执行出错.");
 
     private String code;
     private String desc;

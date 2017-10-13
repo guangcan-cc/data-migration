@@ -2,16 +2,17 @@ package com.sinosoft.common.web.controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
-import java.util.SimpleTimeZone;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.sinosoft.datamigration.common.Pager;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.service.IUserService;
+import com.sinosoft.datamigration.util.ObjectUtils;
+import com.sinosoft.datamigration.util.ResultDesc;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,9 +48,6 @@ public class UserController {
 			e.printStackTrace();
 			request.setAttribute("errorMsg",e.getErrMsg());
 			return "/admin/login";
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return "/admin/login";
 		}
 		return "/admin/index";
 	}
@@ -60,6 +58,32 @@ public class UserController {
 		session.removeAttribute("user");
 
 		return "/admin/login";
+	}
+
+	public Map<String, Object> queryUserInfo(@RequestParam(value = "username",required = false) String username,
+											 @RequestParam(value = "isvalid",required = false) String isvalid,
+											 Pager pager){
+
+		Map<String,Object> resultMap = new HashMap<>();
+
+		Map<String, Object> paramMap = new HashMap<>();
+		if(!ObjectUtils.isEmpty(username)){
+			paramMap.put("username",username);
+		}
+		if(!ObjectUtils.isEmpty(isvalid)){
+			paramMap.put("isvalid",isvalid);
+		}
+
+		try {
+			pager = userService.queryUserInfoByMap(pager,paramMap);
+			resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
+			resultMap.put("pager",pager);
+		} catch (NonePrintException e) {
+			e.printStackTrace();
+			resultMap.put(ResultDesc.CODE,e.getErrCode());
+			resultMap.put(ResultDesc.MSG,e.getErrMsg());
+		}
+		return resultMap;
 	}
 
 	@RequestMapping(value = "/welcome.do")

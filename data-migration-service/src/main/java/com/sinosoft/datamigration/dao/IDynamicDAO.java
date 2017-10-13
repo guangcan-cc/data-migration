@@ -22,7 +22,7 @@ public interface IDynamicDAO extends IDynamicBaseDAO{
      * @param sql
      * @return
      */
-    boolean executeSQL(Dmdatasource dmdatasource, String sql, Object... params);
+    int executeSQL(Dmdatasource dmdatasource, String sql, Object... params) throws SQLException;
 
     /**
      * 查关联表
@@ -35,7 +35,7 @@ public interface IDynamicDAO extends IDynamicBaseDAO{
     /**
      * 创建存储过程
      */
-    String createMigrationProduce(Dmdatasource dmdatasource, String procedureName, Dmgrouptable dmgrouptable, Dmgroup dmgroup, List<String> relatedTables) ;
+    void createOrReplaceProduce(Dmdatasource dmdatasource, List<Dmgrouptable> dmgrouptables, Dmgroup dmgroup) throws SQLException;
 
     /**
      * 查询表字段信息
@@ -68,11 +68,6 @@ public interface IDynamicDAO extends IDynamicBaseDAO{
     boolean checkTableExist(Dmdatasource dmdatasource,String tableName);
 
     /**
-     * 创建存储过程
-     */
-    String createRestoreProduce(Dmdatasource dmdatasource, String restoreProcedureName, Dmgrouptable dmgrouptable, Dmgroup byId, List<String> relatedTables);
-
-    /**
      * 执行存储过程
      */
     void executeProcedure(Dmdatasource dmdatasource, String procedureName) throws NonePrintException;
@@ -82,14 +77,14 @@ public interface IDynamicDAO extends IDynamicBaseDAO{
      * @param dmdatasource
      * @param dmgroup
      */
-    boolean deleteDataInMidTable(Dmdatasource dmdatasource, Dmgroup dmgroup);
+    int deleteDataInMidTable(Dmdatasource dmdatasource, Dmgroup dmgroup) throws NonePrintException, SQLException;
 
     /**
-     * 提取数据 返回提取的数量 -1表示失败
+     * 提取数据 返回提取的数量
      * @param dmdatasource
      * @param dmgroup
      * @param paramVO
      * @return
      */
-    int executeExtract(Dmdatasource dmdatasource, Dmgroup dmgroup, MigrationParamVO paramVO);
+    int executeExtract(Dmdatasource dmdatasource, Dmgroup dmgroup, MigrationParamVO paramVO) throws NonePrintException, SQLException;
 }

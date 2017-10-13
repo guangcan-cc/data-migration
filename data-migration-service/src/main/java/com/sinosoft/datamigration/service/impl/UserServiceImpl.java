@@ -1,5 +1,6 @@
 package com.sinosoft.datamigration.service.impl;
 
+import com.sinosoft.datamigration.common.Pager;
 import com.sinosoft.datamigration.dao.IUserDAO;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.Dmuserinfo;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 /**
  * Created by Elvis on 2017/8/30.
@@ -23,7 +25,7 @@ public class UserServiceImpl implements IUserService {
     private IUserDAO userDao;
 
     @Override
-    public Dmuserinfo login(String usercode, String password) throws NonePrintException, NoSuchAlgorithmException {
+    public Dmuserinfo login(String usercode, String password) throws NonePrintException{
 
         if(!StringUtils.hasLength(usercode) || !StringUtils.hasLength(password)){
             throw new NonePrintException(ErrorCodeDesc.USERCODE_IS_NULL.getCode(),ErrorCodeDesc.USERCODE_IS_NULL.getDesc());
@@ -37,7 +39,12 @@ public class UserServiceImpl implements IUserService {
             throw new NonePrintException(ErrorCodeDesc.USER_IS_NULL.getCode(),ErrorCodeDesc.USER_IS_NULL.getDesc());
         }
 
-        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new NonePrintException(ErrorCodeDesc.SYSTEM_ERROR.getCode(),ErrorCodeDesc.SYSTEM_ERROR.getDesc());
+        }
         BigInteger number = new BigInteger(1, (md5.digest(password
                 .getBytes())));
         String md5Password = number.toString(16);
@@ -47,6 +54,11 @@ public class UserServiceImpl implements IUserService {
         }
 
         return user;
+    }
+
+    @Override
+    public Pager queryUserInfoByMap(Pager pager, Map<String, Object> paramMap) throws NonePrintException {
+        return userDao.queryUserInfoByMap(pager,paramMap);
     }
 }
 
