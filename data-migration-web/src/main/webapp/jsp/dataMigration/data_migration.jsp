@@ -140,7 +140,7 @@
                     var liHtml = "";
                     if(!!groupIds){
                         for(var i = 0; i< groupIds.length; i++){
-                            liHtml += "<li>" + groupIds[0] + "</li>";
+                            liHtml += "<li>" + groupIds[i] + "</li>";
                         }
                     }
                     var $ul = $("#groupId").next().find("ul");
@@ -173,7 +173,7 @@
                     var liHtml = "";
                     if(!!groupNames){
                         for(var i = 0; i< groupNames.length; i++){
-                            liHtml += "<li>" + groupNames[0] + "</li>";
+                            liHtml += "<li>" + groupNames[i] + "</li>";
                         }
                         var $ul = $("#groupName").next().find("ul");
                         $ul.html(liHtml);

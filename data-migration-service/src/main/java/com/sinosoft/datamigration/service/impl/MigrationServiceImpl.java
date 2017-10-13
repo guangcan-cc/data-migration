@@ -456,8 +456,12 @@ public class MigrationServiceImpl implements IMigrationService {
 
         //迁移前执行sql
         for(Dmgrouptable dmgrouptable : dmgrouptableList){
+            String hanleTable = dmgrouptable.getHandletargettable();
+            if(AssertUtils.isEmpty(hanleTable)){
+                continue;
+            }
             // third 创建/更新历史表SQL
-            String[] handleTargetTable = dmgrouptable.getHandletargettable().replaceAll("\\n","").split(";");
+            String[] handleTargetTable = hanleTable.replaceAll("\\n","").split(";");
             for(String handleSQL : handleTargetTable){
                 if(AssertUtils.isEmpty(handleSQL)){
                     continue;
@@ -491,7 +495,7 @@ public class MigrationServiceImpl implements IMigrationService {
 
             //执行存储过程
             try {
-                dynamicDAO.executeProcedure(dmdatasource,dmgrouptable.getHandleprocedurename());
+                dynamicDAO.executeProcedure(dmdatasource,dmgroup.getId() + "." + dmgrouptable.getHandleprocedurename() + "()");
             } catch (NonePrintException e) {
                 //如果执行存储过程出错，记录日志并发送邮箱
                 String failedMsg = ErrorCodeDesc.ERROR_IN_MIGRATION.getDesc().
@@ -648,7 +652,7 @@ public class MigrationServiceImpl implements IMigrationService {
 
             //执行存储过程
             try {
-                dynamicDAO.executeProcedure(dmdatasource, dmgrouptable.getRestoreprocedurename());
+                dynamicDAO.executeProcedure(dmdatasource, dmgroup.getId() + "." + dmgrouptable.getRestoreprocedurename() + "()");
             } catch (NonePrintException e){
                 //如果执行存储过程出错，记录日志
                 String failedMsg = ErrorCodeDesc.ERROR_IN_RESTORE.getDesc().replace("@tableName",dmgrouptable.getOriginaltable());

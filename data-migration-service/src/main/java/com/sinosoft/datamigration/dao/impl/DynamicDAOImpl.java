@@ -218,7 +218,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
         CallableStatement cstat = null;
         try{
             conn = DBManager.getConnection(DBManager.getOracleURL(dmdatasource), dmdatasource.getUsername(), dmdatasource.getPassword());
-            cstat = conn.prepareCall("{call " + procedureName + "()}");
+            cstat = conn.prepareCall("{call " + procedureName + "}");
             cstat.execute();
         } catch(SQLException e){
             e.printStackTrace();
@@ -256,6 +256,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
             String sql = "select count(*) from " + dmgroup.getMidtablename();
             pstat = conn.prepareStatement(sql);
             rs = pstat.executeQuery();
+            rs.next();
             return rs.getInt(1);
         } finally {
             DBManager.release(conn, pstat, rs);
