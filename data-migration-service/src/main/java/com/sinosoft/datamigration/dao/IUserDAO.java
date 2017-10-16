@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface IUserDAO extends IBaseDAO{
 
-    Dmuserinfo queryUserByUsername(String usercode);
+    Dmuserinfo queryUserByUserCode(String usercode);
 
     Pager queryUserInfoByMap(Pager pager, Map<String, Object> paramMap);
 }

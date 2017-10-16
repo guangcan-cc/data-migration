@@ -85,8 +85,8 @@
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="appConfig/initEdit.do" data-title="数据迁移" href="javascript:;">用户管理</a></li>
-					<li><a _href="appConfig/initEdit.do" data-title="数据迁移" href="javascript:;">修改密码</a></li>
+					<li><a _href="../jsp/user/user_info.jsp" data-title="用户管理" href="javascript:;">用户管理</a></li>
+					<li><a _href="../jsp/user/password_edit.jsp" data-title="修改密码" href="javascript:;">修改密码</a></li>
 				</ul>
 			</dd>
 		</dl>

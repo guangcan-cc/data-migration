@@ -52,6 +52,7 @@
 	<!-- 基本事务定义,使用transactionManager作事务管理,默认get*方法的事务为readonly,其余方法按默认设置. 默认的设置请参考Spring文档事务一章. -->
 	<tx:advice id="txAdvice">
 		<tx:attributes>
+			<tx:method name="login*" read-only="true" />
 			<tx:method name="is*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="find*" read-only="true" />

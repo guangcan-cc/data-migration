@@ -80,6 +80,8 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
         try {
             conn = DBManager.getConnection(DBManager.getOracleURL(dmdatasource),dmdatasource.getUsername(),dmdatasource.getPassword());
             stat = conn.createStatement();
+            //todo:JDBC连接超时设置...
+            stat.setQueryTimeout(10 * 1000);
             //迁移存储过程
             StringBuilder handlePackage = new StringBuilder("create or replace package ");
             handlePackage.append(dmgroup.getId());
@@ -94,7 +96,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
                         .append(";");
             }
             handlePackage.append(" end ").append(dmgroup.getId()).append(";");
-            stat.executeUpdate(handlePackage.toString());
+            stat.executeQuery(handlePackage.toString());
 
             StringBuilder handlePackageBody = new StringBuilder("create or replace package body ");
             handlePackageBody.append(dmgroup.getId());
@@ -107,7 +109,7 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
 
             handlePackageBody.append(" end ").append(dmgroup.getId()).append(";");
 
-            stat.executeUpdate(handlePackageBody.toString());
+            stat.executeQuery(handlePackageBody.toString());
 
         } finally {
             DBManager.release(conn, stat, null);

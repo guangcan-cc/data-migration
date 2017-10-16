@@ -53,8 +53,8 @@ public class BaseDAOImpl extends HibernateDaoSupport implements IBaseDAO {
     }
 
     @Override
-    public void updatePO(Dmgrouptable dmgrouptable) {
-        this.getHibernateTemplate().saveOrUpdate(dmgrouptable);
+    public <T> void updatePO(T po) {
+        this.getHibernateTemplate().saveOrUpdate(po);
     }
 
 }

@@ -18,5 +18,5 @@ public interface IBaseDAO {
 
     <T> T findById(Class<T> clazz, String id);
 
-    void updatePO(Dmgrouptable dmgrouptable);
+    <T> void updatePO(T po);
 }

@@ -19,7 +19,7 @@ import java.util.Map;
 public class UserDAOImpl extends BaseDAOImpl implements IUserDAO {
 
     @Override
-    public Dmuserinfo queryUserByUsername(String usercode) {
+    public Dmuserinfo queryUserByUserCode(String usercode) {
         String hql = "from Dmuserinfo where usercode=:usercode";
         return (Dmuserinfo) getSession().createQuery(hql)
                 .setString("usercode",usercode).uniqueResult();

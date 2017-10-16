@@ -30,7 +30,7 @@
     <div class="text-c">
         <div class="row cl">
             <div class="inline">
-                <label class="form-label col-sm-2">用户名：</label>
+                <label class="form-label col-sm-2">用户昵称：</label>
                 <div class="formControls col-xs-3">
                     <input type="text" class="input-text radius" value="" name="username">
                 </div>
@@ -70,6 +70,7 @@
                 <th>选择</th>
                 <th>序号</th>
                 <th>用户名</th>
+                <th>用户昵称</th>
                 <th>联系电话</th>
                 <th>邮箱</th>
                 <th>创建时间</th>
@@ -118,6 +119,7 @@
                         var trHtml = "<tr>" +
                                         "<td><input type='radio' name='user_info' value='"+ userInfo.usercode +"'/></td>" +
                                         "<td>" + (i+1) + "</td>" +
+                                        "<td>" + userInfo.usercode + "</td>" +
                                         "<td>" + userInfo.username + "</td>" +
                                         "<td>" + userInfo.phonenumber + "</td>" +
                                         "<td>" + userInfo.email + "</td>" +

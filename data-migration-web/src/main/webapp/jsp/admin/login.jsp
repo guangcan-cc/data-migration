@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/login.css"/>">
     <link rel="stylesheet" href="<c:url value="/plugins/Font-Awesome/css/font-awesome.min.css"/>">
-    <script src="../plugins/jquery/jquery.js"></script>
+    <script src="<c:url value="/plugins/jquery/jquery.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/plugins/layer/2.1/layer.js"/>"></script>
 
 </head>
 <body class="login-content">
-    <form id="form" method="post" action="login.do">
+    <form id="form">
         <div class="top-content">
             <div class="inner-bg">
                 <div class="container">
@@ -50,7 +51,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8" style="margin-left: 60px;">
-                                        <button type="submit" class="btn">登录</button>
+                                        <button type="button" class="btn">登录</button>
                                     </div>
                                 </div>
                             </div>
@@ -60,9 +61,6 @@
             </div>
         </div>
     </form>
-<P>
-    <c:out value="${errorMsg}"/>
-</P>
 <script type="text/javascript">
 
     $(document).ready(function(){
@@ -72,7 +70,21 @@
     })
 
     function ajaxLogin(){
-        $(".login-form").submit();
+
+        $.ajax({
+            url : '${ctx}/user/login',
+            type : 'post',
+            data : $('#form').serialize(),
+            dataType : 'json',
+            success : function(result){
+                if(result.code == 0){
+                    window.location.replace("${ctx}/user/index")
+                } else {
+                    layer.tips(result.msg,'[name="password"]');
+                }
+            }
+        });
+
     }
 </script>
 </body>
