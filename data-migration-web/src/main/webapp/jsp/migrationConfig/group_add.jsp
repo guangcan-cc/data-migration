@@ -146,7 +146,7 @@
                         <button onClick="buildNumberScript();" class="btn btn-success radius" type="button"><i class="Hui-iconfont">&#xe644;</i> 生成提数脚本</button>
                     </div>
                 </div>
-                <div class="inline">
+                <div class="inline" style="display: none;">
                     <label class="form-label col-xs-4 col-sm-2"><strong>是否备份中间表：</strong></label>
                     <div class="formControls col-xs-3">
                         <select name="isbackupmidtable" class="select-default radius" style="height: 30px;">

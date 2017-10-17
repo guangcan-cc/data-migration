@@ -5,10 +5,7 @@ import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.Dmdatasource;
 import com.sinosoft.datamigration.po.Dmgroup;
 import com.sinosoft.datamigration.po.Dmgrouptable;
-import com.sinosoft.datamigration.util.AssertUtils;
-import com.sinosoft.datamigration.util.ConstantUtils;
-import com.sinosoft.datamigration.util.DBManager;
-import com.sinosoft.datamigration.util.ErrorCodeDesc;
+import com.sinosoft.datamigration.util.*;
 import com.sinosoft.datamigration.vo.ConstraintInfoVO;
 import com.sinosoft.datamigration.vo.FieldInfoVO;
 import com.sinosoft.datamigration.vo.MigrationParamVO;
@@ -17,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -240,7 +238,8 @@ public class DynamicDAOImpl extends DynamicBaseDAOImpl implements IDynamicDAO{
     @Override
     public int executeExtract(Dmdatasource dmdatasource, Dmgroup dmgroup, MigrationParamVO paramVO) throws SQLException {
         if("1".equals(paramVO.getParamType())){
-            executeSQL(dmdatasource,dmgroup.getExtractscript(),paramVO.getStartTime(),paramVO.getEndTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            executeSQL(dmdatasource,dmgroup.getExtractscript(),sdf.format(paramVO.getStartTime()),sdf.format(DateUtils.addDays(paramVO.getEndTime(),1)));
         } else {
             String[] paramValue = paramVO.getParamValue().split(",");
             StringBuilder paramBuilder = new StringBuilder();

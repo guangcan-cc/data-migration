@@ -1,5 +1,7 @@
 package com.sinosoft.datamigration.vo;
 
+import java.util.Date;
+
 /**
  * Created by Elvis on 2017/9/7.
  */
@@ -8,8 +10,8 @@ public class GroupQueryVO {
     private String id;
     private String groupname;
     private String type;
-    private String startTime;
-    private String endTime;
+    private Date startTime;
+    private Date endTime;
     private String creator;
     private String isForbidden;
 
@@ -37,19 +39,19 @@ public class GroupQueryVO {
         this.type = type;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

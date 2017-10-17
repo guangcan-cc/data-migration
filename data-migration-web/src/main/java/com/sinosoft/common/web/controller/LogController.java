@@ -7,6 +7,7 @@ import com.sinosoft.datamigration.po.Dmhandlemsglog;
 import com.sinosoft.datamigration.service.ILogService;
 import com.sinosoft.datamigration.service.IMigrationService;
 import com.sinosoft.datamigration.util.AssertUtils;
+import com.sinosoft.datamigration.util.DateUtils;
 import com.sinosoft.datamigration.util.ObjectUtils;
 import com.sinosoft.datamigration.util.ResultDesc;
 import com.sinosoft.datamigration.vo.HandleLogVO;
@@ -17,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Elvis on 2017/10/10.
@@ -39,8 +38,8 @@ public class LogController {
     public Map<String, Object> queryLogInfo(@RequestParam(value = "groupId",required = false) String groupId,
                                             @RequestParam(value = "groupName",required = false) String groupName,
                                             @RequestParam(value = "creator",required = false) String creator,
-                                            @RequestParam(value = "startTime",required = false) String startTime,
-                                            @RequestParam(value = "endTime",required = false) String endTime,
+                                            @RequestParam(value = "startTime",required = false) Date startTime,
+                                            @RequestParam(value = "endTime",required = false) Date endTime,
                                             Pager pager){
 
         Map<String,Object> resultMap = new HashMap<>();
@@ -56,8 +55,9 @@ public class LogController {
             paramMap.put("creator",creator);
         }
         if(!ObjectUtils.isEmpty(startTime) && !ObjectUtils.isEmpty(endTime)){
-            paramMap.put("startTime",startTime);
-            paramMap.put("endTime",endTime);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            paramMap.put("startTime",sdf.format(startTime));
+            paramMap.put("endTime",sdf.format(DateUtils.addDays(endTime,1)));
         }
         try {
             pager = logService.queryLogInfoByMap(pager,paramMap);

@@ -6,10 +6,12 @@ import com.sinosoft.datamigration.po.DmTableRef;
 import com.sinosoft.datamigration.po.Dmgroup;
 import com.sinosoft.datamigration.po.Dmgrouptable;
 import com.sinosoft.datamigration.util.AssertUtils;
+import com.sinosoft.datamigration.util.DateUtils;
 import com.sinosoft.datamigration.vo.GroupQueryVO;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -39,8 +41,9 @@ public class MigrationDAOImpl extends BaseDAOImpl implements IMigrationDAO {
             builder.append(" and isforbidden='").append(queryVO.getIsForbidden()).append("' ");
         }
         if (!AssertUtils.isEmpty(queryVO.getStartTime()) && !AssertUtils.isEmpty(queryVO.getEndTime())){
-            builder.append(" and createTime>to_date('").append(queryVO.getStartTime()).append("','yyyy-mm-dd hh24:mi:ss') ");
-            builder.append(" and createTime<=to_date('").append(queryVO.getEndTime()).append("','yyyy-mm-dd hh24:mi:ss') ");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            builder.append(" and createTime>to_date('").append(sdf.format(queryVO.getStartTime())).append("','yyyy-mm-dd hh24:mi:ss') ");
+            builder.append(" and createTime<=to_date('").append(sdf.format(DateUtils.addDays(queryVO.getEndTime(),1))).append("','yyyy-mm-dd hh24:mi:ss') ");
         }
 
         builder.append(" order by createtime desc ");

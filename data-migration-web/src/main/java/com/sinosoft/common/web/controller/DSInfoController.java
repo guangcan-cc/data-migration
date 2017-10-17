@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -33,8 +34,8 @@ public class DSInfoController extends BaseController{
     public Map<String, Object> queryDSInfo(@RequestParam(value = "dsName",required = false) String dsName,
                               @RequestParam(value = "username",required = false) String username,
                               @RequestParam(value = "creator",required = false) String creator,
-                              @RequestParam(value = "startTime",required = false) String startTime,
-                              @RequestParam(value = "endTime",required = false) String endTime,
+                              @RequestParam(value = "startTime",required = false) Date startTime,
+                              @RequestParam(value = "endTime",required = false) Date endTime,
                               @RequestParam(value = "isForbidden",required = false) String isForbidden,Pager<Dmdatasource> pager){
 
         Map<String,Object> resultMap = new HashMap<>();
@@ -53,8 +54,9 @@ public class DSInfoController extends BaseController{
             paramMap.put("isForbidden",isForbidden);
         }
         if(!ObjectUtils.isEmpty(startTime) && !ObjectUtils.isEmpty(endTime)){
-            paramMap.put("startTime",startTime);
-            paramMap.put("endTime",endTime);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            paramMap.put("startTime",sdf.format(startTime));
+            paramMap.put("endTime",sdf.format(DateUtils.addDays(endTime,1)));
         }
         try {
             pager = dsInfoService.queryDSInfoByMap(pager,paramMap);
