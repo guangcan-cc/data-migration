@@ -8,6 +8,8 @@ import com.sinosoft.datamigration.dao.IMigrationDAO;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.*;
 import com.sinosoft.datamigration.service.IMigrationService;
+import com.sinosoft.datamigration.task.MigrationTask;
+import com.sinosoft.datamigration.thread.MigrationThreadPool;
 import com.sinosoft.datamigration.util.*;
 import com.sinosoft.datamigration.vo.*;
 import org.slf4j.Logger;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Created by Elvis on 2017/9/7.
@@ -477,51 +480,12 @@ public class MigrationServiceImpl implements IMigrationService {
 
         //生成正在执行的日志
         Dmmigrationlog dmmigrationlog = createMigrationLog(dmgroup,user);
-        List<Dmhandlemsglog> dmhandlemsglogs = new ArrayList<>();
-        for(Dmgrouptable dmgrouptable : dmgrouptableList){
-
-            Dmhandlemsglog dmhandlemsglog = new Dmhandlemsglog();
-            dmhandlemsglog.setId(UUID.randomUUID().toString());
-            dmhandlemsglog.setMigrationlogid(dmmigrationlog.getId());
-            dmhandlemsglog.setGrouptableid(dmgrouptable.getId());
-            dmhandlemsglog.setHandlestarttime(new Date());
-            dmhandlemsglog.setProcedurename(dmgrouptable.getHandleprocedurename());
-            dmhandlemsglog.setProcedure(dmgrouptable.getHandleprocedure());
-            if("1".equals(paramVO.getParamType())){
-                dmhandlemsglog.setMigrationparam(paramVO.getStartTime() + "---" + paramVO.getEndTime());
-            } else {
-                dmhandlemsglog.setMigrationparam(paramVO.getParamValue());
-            }
-
-            //执行存储过程
-            try {
-                dynamicDAO.executeProcedure(dmdatasource,dmgroup.getId() + "." + dmgrouptable.getHandleprocedurename() + "()");
-            } catch (NonePrintException e) {
-                //如果执行存储过程出错，记录日志并发送邮箱
-                String failedMsg = ErrorCodeDesc.ERROR_IN_MIGRATION.getDesc().
-                        replace("@tableName",dmgrouptable.getOriginaltable());
-
-                dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog, count, failedMsg));
-
-                if("1".equals(dmgroup.getIssendemail())){
-                    String emailSet = dmgroup.getEmailset();
-                    if(AssertUtils.isEmpty(emailSet)){
-                        continue;
-                    }
-
-                    MailUtils.sendEmail(MAIL_SERVER,MAIL_SENDER,MAIL_LOGIN_AUTH_CODE,MAIL_SENDER,
-                            emailSet.split(";"),"迁移失败",failedMsg,"text/html;charset=utf-8");
-                }
-                continue;
-            }
-            dmhandlemsglogs.add(createMigrationLogForSuccess(dmhandlemsglog,count));
-        }
-        //更新日志为成功状态
-        dmmigrationlog.setHandleresult(ConstantUtils.MIGRATION_SUCCESS);
-        dmmigrationlog.setHandleendtime(new Date());
         //插入日志信息
         logDAO.insertPO(dmmigrationlog);
-        logDAO.batchPO(dmhandlemsglogs);
+
+        MigrationTask task = new MigrationTask(dmgrouptableList,dmmigrationlog,paramVO,dmdatasource,dmgroup,count,"1");
+
+        MigrationThreadPool.execute(task);
     }
 
     /**
@@ -541,31 +505,6 @@ public class MigrationServiceImpl implements IMigrationService {
         dmmigrationlog.setHandleperson(user.getUsername());
         dmmigrationlog.setHandleresult(ConstantUtils.MIGRATION_IN_PROGRESS);
         return dmmigrationlog;
-    }
-
-    /**
-     * 成功详情日志
-     */
-    private Dmhandlemsglog createMigrationLogForSuccess(Dmhandlemsglog dmhandlemsglog, int count){
-        dmhandlemsglog.setHandleendtime(new Date());
-        dmhandlemsglog.setDatacount(count);
-        dmhandlemsglog.setIssuccess(ConstantUtils.MIGRATION_SUCCESS);
-        dmhandlemsglog.setHandlecount(count);
-        dmhandlemsglog.setFailedcount(0);
-        return dmhandlemsglog;
-    }
-
-    /**
-     * 成功失败日志
-     */
-    private Dmhandlemsglog createMigrationLogForFailure(Dmhandlemsglog dmhandlemsglog, int count, String failedReason){
-        dmhandlemsglog.setHandleendtime(new Date());
-        dmhandlemsglog.setDatacount(count);
-        dmhandlemsglog.setIssuccess(ConstantUtils.MIGRATION_FAILURE);
-        dmhandlemsglog.setHandlecount(0);
-        dmhandlemsglog.setFailedcount(count);
-        dmhandlemsglog.setFailedreason(failedReason);
-        return dmhandlemsglog;
     }
 
     @Override
@@ -634,50 +573,14 @@ public class MigrationServiceImpl implements IMigrationService {
         }
         //生成正在执行的日志
         Dmmigrationlog dmmigrationlog = createMigrationLog(dmgroup,user);
-        List<Dmhandlemsglog> dmhandlemsglogs = new ArrayList<>();
-        for(Dmgrouptable dmgrouptable : dmgrouptableList){
 
-            Dmhandlemsglog dmhandlemsglog = new Dmhandlemsglog();
-            dmhandlemsglog.setId(UUID.randomUUID().toString());
-            dmhandlemsglog.setMigrationlogid(dmmigrationlog.getId());
-            dmhandlemsglog.setGrouptableid(dmgrouptable.getId());
-            dmhandlemsglog.setHandlestarttime(new Date());
-            dmhandlemsglog.setProcedurename(dmgrouptable.getRestoreprocedurename());
-            dmhandlemsglog.setProcedure(dmgrouptable.getRestoreprocedure());
-            if("1".equals(paramVO.getParamType())){
-                dmhandlemsglog.setMigrationparam(paramVO.getStartTime() + "---" + paramVO.getEndTime());
-            } else {
-                dmhandlemsglog.setMigrationparam(paramVO.getParamValue());
-            }
-
-            //执行存储过程
-            try {
-                dynamicDAO.executeProcedure(dmdatasource, dmgroup.getId() + "." + dmgrouptable.getRestoreprocedurename() + "()");
-            } catch (NonePrintException e){
-                //如果执行存储过程出错，记录日志
-                String failedMsg = ErrorCodeDesc.ERROR_IN_RESTORE.getDesc().replace("@tableName",dmgrouptable.getOriginaltable());
-                dmhandlemsglogs.add(createMigrationLogForFailure(dmhandlemsglog,count,failedMsg));
-
-                if("1".equals(dmgroup.getIssendemail())){
-                    String emailSet = dmgroup.getEmailset();
-                    if(AssertUtils.isEmpty(emailSet)){
-                        continue;
-                    }
-
-                    MailUtils.sendEmail(MAIL_SERVER,MAIL_SENDER,MAIL_LOGIN_AUTH_CODE,MAIL_SENDER,
-                            emailSet.split(";"),"还原失败",failedMsg,"text/html;charset=utf-8");
-                }
-
-                continue;
-            }
-            dmhandlemsglogs.add(createMigrationLogForSuccess(dmhandlemsglog,count));
-        }
-        //更新日志为成功状态
-        dmmigrationlog.setHandleresult(ConstantUtils.MIGRATION_SUCCESS);
-        dmmigrationlog.setHandleendtime(new Date());
         //插入日志信息
         logDAO.insertPO(dmmigrationlog);
-        logDAO.batchPO(dmhandlemsglogs);
+
+        MigrationTask task = new MigrationTask(dmgrouptableList,dmmigrationlog,paramVO,dmdatasource,dmgroup,count,"2");
+
+        MigrationThreadPool.execute(task);
+
     }
 
     @Override

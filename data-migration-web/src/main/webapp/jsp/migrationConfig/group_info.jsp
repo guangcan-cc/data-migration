@@ -64,8 +64,8 @@
                     <div class="formControls col-xs-3">
                         <select name="type" class="select-default radius">
                             <option value="">全部</option>
-                            <option value="1">数据迁移</option>
-                            <option value="0">数据校验</option>
+                            <option value="0">数据迁移</option>
+                            <option value="1">数据校验</option>
                         </select>
                     </div>
                 </div>

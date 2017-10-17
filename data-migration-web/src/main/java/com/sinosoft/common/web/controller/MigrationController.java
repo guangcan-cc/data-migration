@@ -51,7 +51,6 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put("pager",pager);
         } catch (NonePrintException e) {
-            e.printStackTrace();
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -70,7 +69,6 @@ public class MigrationController {
             resultMap.put("dmdatasources",dmdatasources);
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
         } catch (NonePrintException e) {
-            e.printStackTrace();
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -97,7 +95,6 @@ public class MigrationController {
             resultMap.put(ResultDesc.MSG,"保存成功");
             resultMap.put("id",dmgroup.getId());
         } catch (NonePrintException e) {
-            e.printStackTrace();
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -111,7 +108,6 @@ public class MigrationController {
             Dmgroup dmgroup = migrationService.findGroupInfoById(id);
             request.setAttribute("dmgroup",dmgroup);
         } catch (NonePrintException e) {
-            e.printStackTrace();
             return "/error/error_500";
         }
 
@@ -127,7 +123,6 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"保存成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -139,7 +134,6 @@ public class MigrationController {
         try {
             modelMap.put("dmgroup",migrationService.findGroupInfoById(id));
         } catch (NonePrintException e) {
-            e.printStackTrace();
             return "/error/error_500";
         }
         return "/migrationConfig/tables_in_group_view";
@@ -154,7 +148,6 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put("pager",pager);
         } catch (NonePrintException e) {
-            e.printStackTrace();
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -169,7 +162,7 @@ public class MigrationController {
             resultMap.put("groupInfo",migrationService.findGroupInfoById(groupId));
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -186,7 +179,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put("result",result);
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -203,7 +196,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"保存成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -231,7 +224,7 @@ public class MigrationController {
             resultMap.put("dmgrouptables",dmgrouptables);
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -247,7 +240,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"编辑成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -263,7 +256,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"删除成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -297,7 +290,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"查询成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -314,7 +307,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"修改成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -331,7 +324,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"修改成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -348,7 +341,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"修改成功");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -364,7 +357,7 @@ public class MigrationController {
             resultMap.put("groupIds",groupIds);
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -380,7 +373,7 @@ public class MigrationController {
             resultMap.put("groupNames",groupNames);
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -400,7 +393,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"迁移完成，请查看日志结果");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
@@ -420,7 +413,7 @@ public class MigrationController {
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
             resultMap.put(ResultDesc.MSG,"还原完成，请查看日志结果");
         } catch (NonePrintException e) {
-            e.printStackTrace();
+
             resultMap.put(ResultDesc.CODE,e.getErrCode());
             resultMap.put(ResultDesc.MSG,e.getErrMsg());
         }
