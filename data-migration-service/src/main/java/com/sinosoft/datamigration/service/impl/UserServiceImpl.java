@@ -99,6 +99,11 @@ public class UserServiceImpl implements IUserService {
 
         userDao.updatePO(user);
     }
+
+    @Override
+    public Dmuserinfo findUserInfoByCode(String usercode) throws NonePrintException {
+        return userDao.findById(Dmuserinfo.class,usercode);
+    }
 }
 
 

@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class="row cl">
+        <%--<div class="row cl" style="display: none;">
             <div class="inline">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span><strong>用户密码：</strong></label>
                 <div class="formControls col-xs-3" style="width: 20%;">
@@ -46,7 +46,7 @@
                     <input type="password" class="input-text radius" value="${dmuserinfo.password}" name="passwordBak">
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="row cl">
             <div class="inline">
                 <label class="form-label col-xs-4 col-sm-2"><strong>联系电话：</strong></label>
@@ -67,8 +67,8 @@
                 <label class="form-label col-sm-2"><strong>是否有效：</strong></label>
                 <div class="formControls col-xs-3">
                     <select name="isvalid" class="select-default radius" style="height: 30px;">
-                        <option value="1" <c:if test="${dmuserinfo.isvaild == 1}">selected="selected"</c:if>>是</option>
-                        <option value="0" <c:if test="${dmuserinfo.isvaild == 0}">selected="selected"</c:if>>否</option>
+                        <option value="1" <c:if test="${dmuserinfo.isvalid == 1}">selected="selected"</c:if>>是</option>
+                        <option value="0" <c:if test="${dmuserinfo.isvalid == 0}">selected="selected"</c:if>>否</option>
                     </select>
                 </div>
             </div>

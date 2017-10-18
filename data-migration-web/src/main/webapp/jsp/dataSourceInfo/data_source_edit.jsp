@@ -160,7 +160,14 @@
             data:$("#form-dataSource-add").serialize(),
             dataType:"json",
             success:function(result){
-                layer.msg(result.msg);
+                if(result.code == 0){
+                    layer.alert(result.msg, function(){
+                        parent.location.reload();
+                        layer_close;
+                    });
+                } else {
+                    layer.alert(result.msg, {icon: 6});
+                }
             },
             error:function(){
                 layer.alert('网络错误', {icon: 6});

@@ -20,4 +20,6 @@ public interface IUserService {
     void updateUserInfo(Dmuserinfo dmuserinfo)throws NonePrintException;
 
     void updatePassword(Dmuserinfo userInfo, String passwordOld, String passwordNew)throws NonePrintException;
+
+    Dmuserinfo findUserInfoByCode(String usercode)throws NonePrintException;
 }

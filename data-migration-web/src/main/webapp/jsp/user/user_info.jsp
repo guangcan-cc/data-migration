@@ -121,8 +121,8 @@
                                         "<td>" + (i+1) + "</td>" +
                                         "<td>" + userInfo.usercode + "</td>" +
                                         "<td>" + userInfo.username + "</td>" +
-                                        "<td>" + userInfo.phonenumber + "</td>" +
-                                        "<td>" + userInfo.email + "</td>" +
+                                        "<td>" + (userInfo.phonenumber == null ? "无" : userInfo.phonenumber) + "</td>" +
+                                        "<td>" + (userInfo.email == null ? "无" : userInfo.email) + "</td>" +
                                         "<td>" + formatDate(userInfo.createtime) + "</td>" +
                                         "<td>" + (userInfo.isvalid == 1 ? "有效" : "无效") + "</td>" +
                                     "</tr>";

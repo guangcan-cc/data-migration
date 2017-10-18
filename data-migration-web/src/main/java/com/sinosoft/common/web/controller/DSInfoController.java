@@ -140,7 +140,7 @@ public class DSInfoController extends BaseController{
         try {
             dsInfoService.updateDSInfo(datasource);
             resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
-            resultMap.put(ResultDesc.MSG,"保存成功");
+            resultMap.put(ResultDesc.MSG,"编辑成功");
         } catch (NonePrintException e) {
             e.printStackTrace();
             resultMap.put(ResultDesc.CODE,e.getErrCode());

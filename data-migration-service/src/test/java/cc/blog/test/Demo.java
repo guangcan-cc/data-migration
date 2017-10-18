@@ -12,6 +12,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -25,6 +27,12 @@ public class Demo {
         String url = "";
 
         Connection conn = DBManager.getConnection(url, "root", "8023");
+
+        new HashMap().put("","");
+
+        new HashSet<>().add("");
+
+        StringBuffer s = new StringBuffer();
 
     }
 }

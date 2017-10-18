@@ -172,9 +172,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/editShowUserInfo")
-	public String editShowUserInfo(String usercode){
+	public String editShowUserInfo(String usercode, HttpServletRequest request){
 
-
+		try {
+			request.setAttribute("dmuserinfo",userService.findUserInfoByCode(usercode));
+		} catch (NonePrintException e) {
+			e.printStackTrace();
+		}
 		return "/user/user_edit";
 	}
 
