@@ -13,7 +13,13 @@ import java.util.Date;
 public class Dmhandlemsglog {
     private String id;
     private String migrationlogid;
-    private String grouptableid;
+    private String originaldsname;
+    private String originaldsusername;
+    private String originaltable;
+    private String targetdsname;
+    private String targetdsusername;
+    private String targettable;
+    private String iscleanup;
     private Date handlestarttime;
     private Date handleendtime;
     private String migrationparam;
@@ -74,16 +80,6 @@ public class Dmhandlemsglog {
 
     public void setMigrationlogid(String migrationlogid) {
         this.migrationlogid = migrationlogid;
-    }
-
-    @Basic
-    @Column(name = "GROUPTABLEID")
-    public String getGrouptableid() {
-        return grouptableid;
-    }
-
-    public void setGrouptableid(String grouptableid) {
-        this.grouptableid = grouptableid;
     }
 
     @Basic
@@ -166,44 +162,73 @@ public class Dmhandlemsglog {
         this.issuccess = issuccess;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Dmhandlemsglog that = (Dmhandlemsglog) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (migrationlogid != null ? !migrationlogid.equals(that.migrationlogid) : that.migrationlogid != null)
-            return false;
-        if (grouptableid != null ? !grouptableid.equals(that.grouptableid) : that.grouptableid != null) return false;
-        if (handlestarttime != null ? !handlestarttime.equals(that.handlestarttime) : that.handlestarttime != null)
-            return false;
-        if (handleendtime != null ? !handleendtime.equals(that.handleendtime) : that.handleendtime != null)
-            return false;
-        if (threadinfo != null ? !threadinfo.equals(that.threadinfo) : that.threadinfo != null) return false;
-        if (datacount != null ? !datacount.equals(that.datacount) : that.datacount != null) return false;
-        if (handlecount != null ? !handlecount.equals(that.handlecount) : that.handlecount != null) return false;
-        if (failedcount != null ? !failedcount.equals(that.failedcount) : that.failedcount != null) return false;
-        if (failedreason != null ? !failedreason.equals(that.failedreason) : that.failedreason != null) return false;
-        if (issuccess != null ? !issuccess.equals(that.issuccess) : that.issuccess != null) return false;
-
-        return true;
+    @Basic
+    @Column(name = "originaldsname")
+    public String getOriginaldsname() {
+        return originaldsname;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (migrationlogid != null ? migrationlogid.hashCode() : 0);
-        result = 31 * result + (grouptableid != null ? grouptableid.hashCode() : 0);
-        result = 31 * result + (handlestarttime != null ? handlestarttime.hashCode() : 0);
-        result = 31 * result + (handleendtime != null ? handleendtime.hashCode() : 0);
-        result = 31 * result + (threadinfo != null ? threadinfo.hashCode() : 0);
-        result = 31 * result + (datacount != null ? datacount.hashCode() : 0);
-        result = 31 * result + (handlecount != null ? handlecount.hashCode() : 0);
-        result = 31 * result + (failedcount != null ? failedcount.hashCode() : 0);
-        result = 31 * result + (failedreason != null ? failedreason.hashCode() : 0);
-        result = 31 * result + (issuccess != null ? issuccess.hashCode() : 0);
-        return result;
+    public void setOriginaldsname(String originaldsname) {
+        this.originaldsname = originaldsname;
+    }
+
+    @Basic
+    @Column(name = "originaldsusername")
+    public String getOriginaldsusername() {
+        return originaldsusername;
+    }
+
+    public void setOriginaldsusername(String originaldsusername) {
+        this.originaldsusername = originaldsusername;
+    }
+
+    @Basic
+    @Column(name = "originaltable")
+    public String getOriginaltable() {
+        return originaltable;
+    }
+
+    public void setOriginaltable(String originaltable) {
+        this.originaltable = originaltable;
+    }
+
+    @Basic
+    @Column(name = "targetdsname")
+    public String getTargetdsname() {
+        return targetdsname;
+    }
+
+    public void setTargetdsname(String targetdsname) {
+        this.targetdsname = targetdsname;
+    }
+
+    @Basic
+    @Column(name = "targetdsusername")
+    public String getTargetdsusername() {
+        return targetdsusername;
+    }
+
+    public void setTargetdsusername(String targetdsusername) {
+        this.targetdsusername = targetdsusername;
+    }
+
+    @Basic
+    @Column(name = "targettable")
+    public String getTargettable() {
+        return targettable;
+    }
+
+    public void setTargettable(String targettable) {
+        this.targettable = targettable;
+    }
+
+    @Basic
+    @Column(name = "iscleanup")
+    public String getIscleanup() {
+        return iscleanup;
+    }
+
+    public void setIscleanup(String iscleanup) {
+        this.iscleanup = iscleanup;
     }
 }

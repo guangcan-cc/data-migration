@@ -5,6 +5,7 @@ import com.sinosoft.datamigration.dao.ILogDAO;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.Dmdatasource;
 import com.sinosoft.datamigration.po.Dmhandlemsglog;
+import com.sinosoft.datamigration.po.Dmmigrationlog;
 import com.sinosoft.datamigration.service.ILogService;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,15 @@ public class LogServiceImpl implements ILogService{
     @Override
     public List<Dmhandlemsglog> queryHandleLogByMiglogId(String logId) throws NonePrintException {
         return logDAO.queryHandleLogByMiglogId(logId);
+    }
+
+    @Override
+    public void insertHandleLogs(List<Dmhandlemsglog> dmhandlemsglogs){
+        logDAO.batchPO(dmhandlemsglogs);
+    }
+
+    @Override
+    public void updatePO(Dmmigrationlog dmmigrationlog) {
+        logDAO.updatePO(dmmigrationlog);
     }
 }

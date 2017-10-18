@@ -77,26 +77,12 @@ public class LogController {
                                     ModelMap modelMap){
         try {
             List<Dmgrouptable> tables = migrationService.queryAllTablesById(groupId);
-            Map<String,Dmgrouptable> tableMap = new HashMap<>();
-            if(!AssertUtils.isEmpty(tables)){
-                for(Dmgrouptable table : tables){
-                    tableMap.put(table.getId(),table);
-                }
-            }
+
             List<Dmhandlemsglog> dmhandleMsgLogs = logService.queryHandleLogByMiglogId(logId);
-            List<HandleLogVO> handleLogVOs = null;
-            if(!AssertUtils.isEmpty(dmhandleMsgLogs)){
-                handleLogVOs = new ArrayList<>();
-                for(Dmhandlemsglog log : dmhandleMsgLogs){
-                    HandleLogVO vo = new HandleLogVO();
-                    vo.setDmhandlemsglog(log);
-                    vo.setDmgrouptable(tableMap.get(log.getGrouptableid()));
-                    handleLogVOs.add(vo);
-                }
-            }
+
             modelMap.put("dmgroup",migrationService.findGroupInfoById(groupId));
             modelMap.put("tables",tables);
-            modelMap.put("handleLogVOs",handleLogVOs);
+            modelMap.put("dmhandleMsgLogs",dmhandleMsgLogs);
         } catch (NonePrintException e) {
             e.printStackTrace();
             return "/error/error_500";

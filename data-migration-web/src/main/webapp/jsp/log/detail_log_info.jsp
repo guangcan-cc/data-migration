@@ -171,38 +171,38 @@
             </tr>
             </thead>
             <tbody class="text-c">
-            <c:forEach items="${handleLogVOs}" var="vo" varStatus="i">
+            <c:forEach items="${dmhandleMsgLogs}" var="vo" varStatus="i">
                 <tr>
                     <td>${i.index+1}</td>
-                    <td>${vo.dmgrouptable.originaldsname}</td>
-                    <td>${vo.dmgrouptable.originaldsusername}</td>
-                    <td>${vo.dmgrouptable.originaltable}</td>
-                    <td>${vo.dmgrouptable.targetdsname}</td>
-                    <td>${vo.dmgrouptable.targetdsusername}</td>
-                    <td>${vo.dmgrouptable.targettable}</td>
+                    <td>${vo.originaldsname}</td>
+                    <td>${vo.originaldsusername}</td>
+                    <td>${vo.originaltable}</td>
+                    <td>${vo.targetdsname}</td>
+                    <td>${vo.targetdsusername}</td>
+                    <td>${vo.targettable}</td>
                     <td>
-                        <c:if test="${vo.dmgrouptable.iscleanup == 1}">是</c:if>
-                        <c:if test="${vo.dmgrouptable.iscleanup == 0}">否</c:if>
+                        <c:if test="${vo.iscleanup == 1}">是</c:if>
+                        <c:if test="${vo.iscleanup == 0}">否</c:if>
                     </td>
                     <td>
-                        <fmt:formatDate value="${vo.dmhandlemsglog.handlestarttime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        <fmt:formatDate value="${vo.handlestarttime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                         <br>
-                        <fmt:formatDate value="${vo.dmhandlemsglog.handleendtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        <fmt:formatDate value="${vo.handleendtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                     </td>
-                    <td>${vo.dmhandlemsglog.migrationparam}</td>
+                    <td>${vo.migrationparam}</td>
                     <td>
-                        <a class="btn-link" href="javascript:void(0);" onclick="show_procedure(this);">${vo.dmhandlemsglog.procedurename}</a>
-                        <input type="hidden" value="${vo.dmhandlemsglog.procedure}">
+                        <a class="btn-link" href="javascript:void(0);" onclick="show_procedure(this);">${vo.procedurename}</a>
+                        <input type="hidden" value="${vo.procedure}">
                     </td>
-                    <td>${vo.dmhandlemsglog.datacount}</td>
-                    <td>${vo.dmhandlemsglog.handlecount}</td>
-                    <td>${vo.dmhandlemsglog.failedcount}</td>
-                    <td><a class="btn-link" href="javascript:void(0);" onclick="show_msg('${vo.dmhandlemsglog.failedreason}');">查看</a></td>
+                    <td>${vo.datacount}</td>
+                    <td>${vo.handlecount}</td>
+                    <td>${vo.failedcount}</td>
+                    <td><a class="btn-link" href="javascript:void(0);" onclick="show_msg('${vo.failedreason}');">查看</a></td>
                     <td>
-                        <c:if test="${vo.dmhandlemsglog.issuccess == 1}">
+                        <c:if test="${vo.issuccess == 1}">
                             <div class='btn btn-secondary radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a7;</i></div>
                         </c:if>
-                        <c:if test="${vo.dmhandlemsglog.issuccess == 0}">
+                        <c:if test="${vo.issuccess == 0}">
                             <div class='btn btn-danger radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a6;</i></div>
                         </c:if>
                     </td>

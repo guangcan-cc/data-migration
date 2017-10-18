@@ -2,8 +2,10 @@ package com.sinosoft.datamigration.task;
 
 import com.sinosoft.datamigration.dao.IDynamicDAO;
 import com.sinosoft.datamigration.dao.ILogDAO;
+import com.sinosoft.datamigration.dao.impl.LogDAOImpl;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.*;
+import com.sinosoft.datamigration.service.ILogService;
 import com.sinosoft.datamigration.util.*;
 import com.sinosoft.datamigration.vo.MigrationParamVO;
 
@@ -21,9 +23,9 @@ public class MigrationTask implements Runnable{
 
 
     @Resource
-    private IDynamicDAO dynamicDAO;
+    private IDynamicDAO dynamicDAO = (IDynamicDAO) SpringContextHelper.getBean(IDynamicDAO.class);
     @Resource
-    private ILogDAO logDAO;
+    private ILogService logService = (ILogService) SpringContextHelper.getBean(ILogService.class);
 
     private List<Dmgrouptable> dmgrouptableList;
     private Dmmigrationlog dmmigrationlog;
@@ -56,7 +58,13 @@ public class MigrationTask implements Runnable{
             Dmhandlemsglog dmhandlemsglog = new Dmhandlemsglog();
             dmhandlemsglog.setId(UUID.randomUUID().toString());
             dmhandlemsglog.setMigrationlogid(dmmigrationlog.getId());
-            dmhandlemsglog.setGrouptableid(dmgrouptable.getId());
+            dmhandlemsglog.setOriginaldsname(dmgrouptable.getOriginaldsname());
+            dmhandlemsglog.setOriginaldsusername(dmgrouptable.getOriginaldsusername());
+            dmhandlemsglog.setOriginaltable(dmgrouptable.getOriginaltable());
+            dmhandlemsglog.setTargetdsname(dmgrouptable.getTargetdsname());
+            dmhandlemsglog.setTargetdsusername(dmgrouptable.getTargetdsusername());
+            dmhandlemsglog.setTargettable(dmgrouptable.getTargettable());
+            dmhandlemsglog.setIscleanup(dmgrouptable.getIscleanup());
             dmhandlemsglog.setHandlestarttime(new Date());
             dmhandlemsglog.setProcedurename(dmgrouptable.getHandleprocedurename());
             dmhandlemsglog.setProcedure(dmgrouptable.getHandleprocedure());
@@ -77,11 +85,11 @@ public class MigrationTask implements Runnable{
             }
             dmhandlemsglogs.add(MigrationLogUtils.createMigrationLogForSuccess(dmhandlemsglog,count));
         }
-        logDAO.batchPO(dmhandlemsglogs);
+        logService.insertHandleLogs(dmhandlemsglogs);
         //更新日志为成功状态
         dmmigrationlog.setHandleresult(ConstantUtils.MIGRATION_SUCCESS);
         dmmigrationlog.setHandleendtime(new Date());
-        logDAO.updatePO(dmmigrationlog);
+        logService.updatePO(dmmigrationlog);
     }
 
     private boolean migrateDate(Dmgrouptable dmgrouptable, Dmhandlemsglog dmhandlemsglog, List<Dmhandlemsglog> dmhandlemsglogs){
