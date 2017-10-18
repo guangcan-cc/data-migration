@@ -225,6 +225,9 @@
                 $("#btn_save").addClass("disabled");
             }
         });
+        if($("[name=issendemail]").val() == 1){
+            $("#emailset").parent().parent().show();
+        }
         $("[name=issendemail]").on("change",function(){
             if($(this).val() == 0){
                 $("#emailset").parent().parent().hide();

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@include file="/jsp/common/taglib.jspf"%>
+<c:set var="extractscript" value="${dmgroup.extractscript}" />
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -91,9 +92,9 @@
             </tr>
             <tr>
                 <th>提数脚本：</th>
-                <td>${dmgroup.extractscript}</td>
-                <th>备份脚本</th>
-                <td>${dmgroup.backupscript}</td>
+                <td colspan="3"><a class="btn-link" href="javascript:void(0);" onclick="show_extractscript();">点击查看</a></td>
+                <%--<th>备份脚本</th>
+                <td>${dmgroup.backupscript}</td>--%>
             </tr>
             <tr>
                 <th>原数据源：</th>
@@ -308,6 +309,17 @@
         });
         parent.layer.full(index);
         layer_close();
+    }
+
+    function show_extractscript(){
+        var extractscript = "${extractscript}";
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' + extractscript + '</div>'
+        });
     }
 </script>
 </body>

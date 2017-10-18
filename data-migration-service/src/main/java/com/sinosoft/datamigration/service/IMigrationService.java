@@ -62,6 +62,13 @@ public interface IMigrationService {
     void addTableInfo(Dmgrouptable dmgrouptable) throws NonePrintException;
 
     /**
+     * 修改表信息
+     * @param dmgrouptable
+     * @throws NonePrintException
+     */
+    void updateTableInfo(Dmgrouptable dmgrouptable) throws NonePrintException;
+
+    /**
      * 查看该表是否已配置其他组
      * @param tableName
      * @throws NonePrintException
@@ -75,12 +82,6 @@ public interface IMigrationService {
      * @throws NonePrintException
      */
     Dmgrouptable findTableInfoById(String id)throws NonePrintException;
-
-    /**
-     * 修改表信息
-     * @param dmgrouptable
-     */
-    void updateTableInfo(Dmgrouptable dmgrouptable)throws NonePrintException;
 
     /**
      * 删除表信息

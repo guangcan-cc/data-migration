@@ -67,7 +67,7 @@
             <div class="inline">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span><strong>原表名：</strong></label>
                 <div class="formControls col-xs-3" style="width: 20%;">
-                    <input type="text" class="input-text radius" value="${dmgrouptable.originaltable}" name="originaltable" id="originaltable">
+                    <input type="text" readonly="readonly" class="input-text radius" value="${dmgrouptable.originaltable}" name="originaltable" id="originaltable">
                 </div>
             </div>
             <div class="inline">

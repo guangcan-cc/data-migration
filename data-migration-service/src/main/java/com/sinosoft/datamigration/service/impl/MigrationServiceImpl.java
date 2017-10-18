@@ -21,8 +21,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ExecutorService;
 
 /**
  * Created by Elvis on 2017/9/7.
@@ -61,7 +59,7 @@ public class MigrationServiceImpl implements IMigrationService {
 
     @Override
     public Dmgroup findGroupInfoById(String id) throws NonePrintException {
-        return (Dmgroup) migrationDao.findById(Dmgroup.class,id);
+        return migrationDao.findById(Dmgroup.class,id);
     }
 
     @Override
@@ -75,8 +73,7 @@ public class MigrationServiceImpl implements IMigrationService {
         return migrationDao.queryTablesById(pager,groupId);
     }
 
-    @Override
-    public void addTableInfo(Dmgrouptable dmgrouptable) throws NonePrintException {
+    private List<String> checkTableInfo(Dmgrouptable dmgrouptable, Dmdatasource dmdatasource) throws NonePrintException {
         //校验表是否唯一存在同一组
         Dmgrouptable _dmgrouptable = migrationDao.queryTableByTableNameAndGroupId(
                 dmgrouptable.getGroupid(),dmgrouptable.getOriginaltable());
@@ -88,8 +85,7 @@ public class MigrationServiceImpl implements IMigrationService {
         if(_tableName != null){
             throw new NonePrintException(ErrorCodeDesc.TABLE_IN_GROUP_RELATED.getCode(),ErrorCodeDesc.TABLE_IN_GROUP_RELATED.getDesc().replace("@tableName",_tableName));
         }
-        //查询关联表
-        Dmdatasource dmdatasource = dsInfoDAO.queryDSInfoById(dmgrouptable.getOriginaldsid());
+
         List<String> relatedTables = dynamicDAO.findRelatedTable(dmdatasource,dmgrouptable.getOriginaltable());
 
         List<DmTableRef> dmTableRefs = null;
@@ -116,15 +112,17 @@ public class MigrationServiceImpl implements IMigrationService {
             migrationDao.batchPO(dmTableRefs);
         }
 
-        Dmgroup dmgroup = migrationDao.findById(Dmgroup.class,dmgrouptable.getGroupid());
+        return relatedTables;
+    }
 
-        //生成存储过程
-        String dateTime = String.valueOf(new Date().getTime());
-        String migrationProcedureName = "MIGRATION_" + dateTime;
+    //生成存储过程
+    private void createProcedure(String migrationProcedureName,String restoreProcedureName,
+                                 Dmgrouptable dmgrouptable,Dmgroup dmgroup,
+                                 List<String> relatedTables,Dmdatasource dmdatasource) throws NonePrintException {
+
         String migrationProcedure = SQLUtils.createMigrationProduce(migrationProcedureName,
                 dmgrouptable,dmgroup,relatedTables);
 
-        String restoreProcedureName = "RESTORE_" + dateTime;
         String restoreProcedure = SQLUtils.createRestoreProduce(restoreProcedureName,
                 dmgrouptable,dmgroup,relatedTables);
 
@@ -143,11 +141,55 @@ public class MigrationServiceImpl implements IMigrationService {
         } catch (SQLException e) {
             throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_PROCEDURE.getCode(),ErrorCodeDesc.FAILURE_IN_PROCEDURE.getDesc());
         }
+    }
+
+    @Override
+    public void addTableInfo(Dmgrouptable dmgrouptable) throws NonePrintException {
+
+        //查询关联表
+        Dmdatasource dmdatasource = dsInfoDAO.queryDSInfoById(dmgrouptable.getOriginaldsid());
+
+        //校验 返回关联表
+        List<String> relatedTables = checkTableInfo(dmgrouptable,dmdatasource);
+
+        Dmgroup dmgroup = migrationDao.findById(Dmgroup.class,dmgrouptable.getGroupid());
+
+
+        String dateTime = String.valueOf(new Date().getTime());
+        String migrationProcedureName = "MIGRATION_" + dateTime;
+        String restoreProcedureName = "RESTORE_" + dateTime;
+
+        createProcedure(migrationProcedureName,restoreProcedureName,dmgrouptable,dmgroup,relatedTables,dmdatasource);
 
         migrationDao.insertPO(dmgrouptable);
     }
 
+    @Override
+    public void updateTableInfo(Dmgrouptable dmgrouptable) throws NonePrintException {
+        Dmgrouptable _dmgrouptable = migrationDao.findById(Dmgrouptable.class,dmgrouptable.getId());
+        if(_dmgrouptable == null){
+            throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getCode(),ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getDesc());
+        }
 
+        _dmgrouptable.setTargetdsid(dmgrouptable.getTargetdsid());
+        _dmgrouptable.setTargetdsname(dmgrouptable.getTargetdsname());
+        _dmgrouptable.setTargetdsusername(dmgrouptable.getTargetdsusername());
+        _dmgrouptable.setTargettable(dmgrouptable.getTargettable());
+        _dmgrouptable.setIscleanup(dmgrouptable.getIscleanup());
+
+
+        Dmdatasource dmdatasource = dsInfoDAO.queryDSInfoById(_dmgrouptable.getOriginaldsid());
+
+        List<String> relatedTables = dynamicDAO.findRelatedTable(dmdatasource,dmgrouptable.getOriginaltable());
+
+        Dmgroup dmgroup = migrationDao.findById(Dmgroup.class,_dmgrouptable.getGroupid());
+
+
+        createProcedure(_dmgrouptable.getHandleprocedurename(),_dmgrouptable.getRestoreprocedurename(),
+                _dmgrouptable,dmgroup,relatedTables,dmdatasource);
+
+        migrationDao.updatePO(_dmgrouptable);
+    }
 
     @Override
     public boolean checkTableInfoInOthers(String groupId, String tableName) throws NonePrintException {
@@ -180,23 +222,6 @@ public class MigrationServiceImpl implements IMigrationService {
     @Override
     public Dmgrouptable findTableInfoById(String id) throws NonePrintException {
         return migrationDao.findById(Dmgrouptable.class,id);
-    }
-
-    @Override
-    public void updateTableInfo(Dmgrouptable dmgrouptable) throws NonePrintException {
-        Dmgrouptable _dmgrouptable = migrationDao.findById(Dmgrouptable.class,dmgrouptable.getId());
-        if(_dmgrouptable == null){
-            throw new NonePrintException(ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getCode(),ErrorCodeDesc.FAILURE_IN_TABLE_UPDATE.getDesc());
-        }
-
-        _dmgrouptable.setTargetdsid(dmgrouptable.getTargetdsid());
-        _dmgrouptable.setTargetdsname(dmgrouptable.getTargetdsname());
-        _dmgrouptable.setTargetdsusername(dmgrouptable.getTargetdsusername());
-        _dmgrouptable.setTargettable(dmgrouptable.getTargettable());
-        _dmgrouptable.setOriginaltable(dmgrouptable.getOriginaltable());
-        _dmgrouptable.setIscleanup(dmgrouptable.getIscleanup());
-
-        migrationDao.updatePO(_dmgrouptable);
     }
 
     @Override
