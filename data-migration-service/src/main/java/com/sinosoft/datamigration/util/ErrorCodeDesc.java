@@ -34,7 +34,8 @@ public enum ErrorCodeDesc {
     FAILURE_IN_TABLE_DELETE("1028","删除失败，该表信息已被删除"),
     NO_DATA_EXTRACTED("1029","提取数据为0，请校验参数条件范围内是否存在数据"),
     ERROR_IN_SQL("1030","SQL执行出错."),
-    USER_IS_EXIST("1031","用户名已存在");
+    USER_IS_EXIST("1031","用户名已存在"),
+    USER_INVALID("1032","用户名无效，请联系管理员！");
 
     private String code;
     private String desc;

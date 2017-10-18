@@ -54,14 +54,16 @@
     </div>
     </form>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
-                <span class="l">
-                    <a href="javascript:void(0);" onclick="user_add('新增用户信息','user_add.jsp');" class="btn btn-primary radius">
-                        <i class="Hui-iconfont">&#xe604;</i> 新增
-                    </a>
-                    <a class="btn btn-secondary radius" onclick="user_edit('编辑用户信息','${ctx}/user/editShowUserInfo');" href="javascript:void(0);">
-                        <i class="Hui-iconfont">&#xe60c;</i> 编辑
-                    </a>
-                </span>
+        <span class="l">
+            <a href="javascript:void(0);" onclick="user_add('新增用户信息','user_add.jsp');" class="btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe604;</i> 新增
+            </a>
+            <c:if test="${sessionScope.user.userRole == 0}">
+                <a class="btn btn-secondary radius" onclick="user_edit('编辑用户信息','${ctx}/user/editShowUserInfo');" href="javascript:void(0);">
+                    <i class="Hui-iconfont">&#xe60c;</i> 编辑
+                </a>
+            </c:if>
+        </span>
     </div>
     <div class="text-c" id="content">
         <table class="table table-border table-bg table-sort">

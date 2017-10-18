@@ -5,12 +5,15 @@ import com.sinosoft.datamigration.dao.IUserDAO;
 import com.sinosoft.datamigration.exception.NonePrintException;
 import com.sinosoft.datamigration.po.Dmuserinfo;
 import com.sinosoft.datamigration.service.IUserService;
+import com.sinosoft.datamigration.util.AssertUtils;
+import com.sinosoft.datamigration.util.ConstantUtils;
 import com.sinosoft.datamigration.util.ErrorCodeDesc;
 import com.sinosoft.datamigration.util.MD5Utils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -41,6 +44,10 @@ public class UserServiceImpl implements IUserService {
 
         if (!md5Password.equals(user.getPassword())) {
             throw new NonePrintException(ErrorCodeDesc.USER_LOGIN_ERROR.getCode(),ErrorCodeDesc.USER_LOGIN_ERROR.getDesc());
+        }
+
+        if(ConstantUtils.IS_INVALID.equals(user.getIsvalid())){
+            throw new NonePrintException(ErrorCodeDesc.USER_INVALID.getCode(),ErrorCodeDesc.USER_INVALID.getDesc());
         }
 
         return user;
@@ -74,10 +81,16 @@ public class UserServiceImpl implements IUserService {
             throw new NonePrintException(ErrorCodeDesc.USER_IS_NULL.getCode(),ErrorCodeDesc.USER_IS_NULL.getDesc());
         }
 
-        dmuserinfo.setCreatetime(dmuserinfo.getCreatetime());
-        dmuserinfo.setAddress(dmuserinfo.getAddress());
-        dmuserinfo.setPassword(user.getPassword());
-        userDao.updatePO(dmuserinfo);
+        user.setUsername(dmuserinfo.getUsername());
+        user.setPhonenumber(dmuserinfo.getPhonenumber());
+        user.setEmail(dmuserinfo.getEmail());
+        user.setIsvalid(dmuserinfo.getIsvalid());
+        user.setUpdatetime(new Date());
+
+        if(!AssertUtils.isEmpty(dmuserinfo.getPassword())){
+            user.setPassword(MD5Utils.getMD5Password(dmuserinfo.getPassword()));
+        }
+        userDao.updatePO(user);
     }
 
     @Override

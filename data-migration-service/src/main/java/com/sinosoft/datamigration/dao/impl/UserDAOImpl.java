@@ -27,7 +27,7 @@ public class UserDAOImpl extends BaseDAOImpl implements IUserDAO {
 
     @Override
     public Pager queryUserInfoByMap(Pager pager, Map<String, Object> paramMap) {
-        StringBuilder builder = new StringBuilder("from Dmuserinfo where 1=1");
+        StringBuilder builder = new StringBuilder("from Dmuserinfo where userRole<>'0' ");
 
         if(!ObjectUtils.isEmpty(paramMap)){
             if (paramMap.containsKey("username")){

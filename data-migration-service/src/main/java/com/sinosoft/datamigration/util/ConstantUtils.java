@@ -25,4 +25,8 @@ public interface ConstantUtils {
     String MIGRATION_FAILURE = "0";
     String MIGRATION_SUCCESS = "1";
     String MIGRATION_IN_PROGRESS = "2";
+
+    //1有效 0无效
+    String IS_VALID = "1";
+    String IS_INVALID = "0";
 }

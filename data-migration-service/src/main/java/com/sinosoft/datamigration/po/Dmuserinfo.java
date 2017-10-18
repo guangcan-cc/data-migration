@@ -21,6 +21,7 @@ public class Dmuserinfo {
     private Date updatetime;
     private String isvalid;
     private String remark;
+    private String userRole;
 
     @Id
     @Column(name = "USERCODE")
@@ -120,6 +121,16 @@ public class Dmuserinfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Basic
+    @Column(name = "USERROLE")
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     @Override

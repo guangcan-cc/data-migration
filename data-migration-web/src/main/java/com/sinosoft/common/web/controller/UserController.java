@@ -50,6 +50,7 @@ public class UserController {
 		try {
 
 			HttpSession session = request.getSession();
+
 			session.setAttribute("user",userService.login(usercode,password));
 
 			resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
@@ -89,6 +90,7 @@ public class UserController {
 
 			dmuserinfo.setAddress("中科软系统");
 			dmuserinfo.setCreatetime(new Date());
+			dmuserinfo.setUserRole("1");
 			userService.addUser(dmuserinfo);
 
 			resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);
@@ -109,16 +111,12 @@ public class UserController {
 		Map<String,Object> resultMap = new HashMap<>();
 
 		try {
-			if(AssertUtils.isEmpty(dmuserinfo.getUsercode()) 		||
-					AssertUtils.isEmpty(dmuserinfo.getUsername()) 	||
-					AssertUtils.isEmpty(dmuserinfo.getPassword()) 	||
-					AssertUtils.isEmpty(passwordBak) 				||
-					!passwordBak.equals(dmuserinfo.getPassword())) {
+			if(AssertUtils.isEmpty(dmuserinfo.getUsercode()) || AssertUtils.isEmpty(dmuserinfo.getUsername())) {
 
 				throw new NonePrintException(ErrorCodeDesc.SYSTEM_ERROR.getCode(),ErrorCodeDesc.SYSTEM_ERROR.getDesc());
+
 			}
 
-			dmuserinfo.setUpdatetime(new Date());
 			userService.updateUserInfo(dmuserinfo);
 
 			resultMap.put(ResultDesc.CODE,ResultDesc.SUCCESS);

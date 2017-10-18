@@ -33,20 +33,20 @@
                 </div>
             </div>
         </div>
-        <%--<div class="row cl" style="display: none;">
+        <div class="row cl">
             <div class="inline">
-                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span><strong>用户密码：</strong></label>
+                <label class="form-label col-xs-4 col-sm-2"><strong>用户新密码：</strong></label>
                 <div class="formControls col-xs-3" style="width: 20%;">
-                    <input type="password" class="input-text radius" value="${dmuserinfo.password}" name="password">
+                    <input type="password" class="input-text radius" value="" name="password">
                 </div>
             </div>
             <div class="inline">
-                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span><strong>再次确认密码：</strong></label>
+                <label class="form-label col-xs-4 col-sm-2"><strong>再次确认新密码：</strong></label>
                 <div class="formControls col-xs-3" style="width: 20%;">
-                    <input type="password" class="input-text radius" value="${dmuserinfo.password}" name="passwordBak">
+                    <input type="password" class="input-text radius" value="" name="passwordBak">
                 </div>
             </div>
-        </div>--%>
+        </div>
         <div class="row cl">
             <div class="inline">
                 <label class="form-label col-xs-4 col-sm-2"><strong>联系电话：</strong></label>
@@ -90,18 +90,6 @@
 <script type="text/javascript" src="<c:url value="/js/common.js"/>"></script>
 <script type="text/javascript">
 
-    window.onload = function(){
-        $("[name='passwordBak']").blur(function(){
-            if($("[name='passwordBak']").val() == ""){
-                layer.tips('请输入再次确认密码', '[name="passwordBak"]');
-                return ;
-            }
-            if($("[name='passwordBak']").val() != $("[name='password']").val()){
-                layer.tips('与用户密码不一致', '[name="passwordBak"]');
-            }
-        });
-    }
-
     function ajaxAddTableInfo(){
         //验证组数据
         if(!validForm()){
@@ -137,17 +125,15 @@
             layer.alert('用户昵称不能为空', {icon: 6});
             return false;
         }
-        if(isBlank($("[name='password']").val())){
-            layer.alert('密码不能为空', {icon: 6});
-            return false;
-        }
-        if(isBlank($("[name='passwordBak']").val())){
-            layer.alert('请输入再次确认密码', {icon: 6});
-            return false;
-        }
-        if($("[name='passwordBak']").val() != $("[name='password']").val()){
-            layer.alert('两次输入密码不一致', {icon: 6});
-            return false;
+        if(!isBlank($("[name='password']").val())){
+            if(isBlank($("[name='passwordBak']").val())){
+                layer.alert('请输入再次确认新密码', {icon: 6});
+                return false;
+            }
+            if($("[name='passwordBak']").val() != $("[name='password']").val()){
+                layer.alert('两次输入密码不一致', {icon: 6});
+                return false;
+            }
         }
         if(!isBlank($("[name='email']").val())){
             if(!isEmail($("[name='email']").val())){
