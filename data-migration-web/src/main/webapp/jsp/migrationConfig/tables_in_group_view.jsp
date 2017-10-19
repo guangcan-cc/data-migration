@@ -159,6 +159,7 @@
 
     var currentPage = 1;
     var pageSize = 4;
+    var extractscript = "${extractscript}";
 
     $(document).ready(function(){
         ajaxQueryInfo(1);
@@ -311,16 +312,6 @@
         layer_close();
     }
 
-    function show_extractscript(){
-        var extractscript = "${extractscript}";
-        layer.open({
-            type: 1,
-            title: false,
-            closeBtn: 0,
-            shadeClose: true,
-            content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' + extractscript + '</div>'
-        });
-    }
 </script>
 </body>
 </html>

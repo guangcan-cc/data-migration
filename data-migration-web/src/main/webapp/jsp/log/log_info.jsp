@@ -122,9 +122,9 @@
                         var info = list[i];
                         var handleresult = info.handleresult;
                         if(handleresult == 0){
-                            handleresult = "<div class='btn btn-danger radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a6;</i></div> 失败";
+                            handleresult = "<div class='btn btn-danger radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a6;</i></div> 任务处理失败";
                         } else if (handleresult == 1){
-                            handleresult = "<div class='btn btn-secondary radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a7;</i></div> 成功";
+                            handleresult = "<div class='btn btn-secondary radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6a7;</i></div> 任务处理完成";
                         } else if (handleresult == 2){
                             handleresult = "<div class='btn btn-default radius' style='height: 20px;padding: 0 5px;line-height: 15px;'><i class='Hui-iconfont'>&#xe6f9;</i></div> 正在执行";
                         }

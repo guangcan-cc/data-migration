@@ -11,13 +11,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.sun.mail.util.MailSSLSocketFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by Elvis on 2017/10/12.
  */
 public class MailUtils {
 
-    public static final String MAIL_SERVER = "smtp.qq.com";
+    private static final Logger logger = LoggerFactory.getLogger(MailUtils.class);
 
     /**
      * 发送邮件工具类:通过qq邮件发送,因为具有ssl加密,采用的是smtp协议
@@ -88,11 +90,12 @@ public class MailUtils {
             msg.setContent(emailContent,emailContentType);//发html格式的文本
             //发送动作
             Transport.send(msg);
-            System.out.println("邮件发送成功");
+            logger.info("邮件发送成功");
             res=1;
 
         } catch (Exception e) {
-            System.out.println("邮件发送失败: "+e.getMessage());
+
+            logger.error("邮件发送失败: "+e.getMessage());
 
             res=0;
         }

@@ -212,6 +212,17 @@ function formatDateFull(nS) {
     var minute=now.getMinutes()>=10?(now.getMinutes()):"0"+(now.getMinutes()); 
     var second=now.getSeconds()>=10?(now.getSeconds()):"0"+(now.getSeconds());  
     return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
-} 
+}
+
+function show_extractscript(){
+
+	layer.open({
+		type: 1,
+		title: false,
+		closeBtn: 0,
+		shadeClose: true,
+		content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' + extractscript + '</div>'
+	});
+}
 
 

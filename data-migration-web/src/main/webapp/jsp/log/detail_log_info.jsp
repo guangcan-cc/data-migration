@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@include file="/jsp/common/taglib.jspf"%>
+<c:set var="extractscript" value="${dmgroup.extractscript}" />
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -91,9 +92,7 @@
             </tr>
             <tr>
                 <th>提数脚本：</th>
-                <td>${dmgroup.extractscript}</td>
-                <th>备份脚本</th>
-                <td>${dmgroup.backupscript}</td>
+                <td colspan="3"><a class="btn-link" href="javascript:void(0);" onclick="show_extractscript();">点击查看</a></td>
             </tr>
             <tr>
                 <th>原数据源：</th>
@@ -219,6 +218,8 @@
 <script type="text/javascript" src="<c:url value="/plugins/My97DatePicker/WdatePicker.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.showLoading.min.js"/>"></script>
 <script type="text/javascript">
+
+    var extractscript = "${extractscript}";
 
     function show_procedure($this){
         var procedureContent =  $($this).next().val();

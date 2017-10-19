@@ -10,6 +10,7 @@ import com.sinosoft.datamigration.util.*;
 import com.sinosoft.datamigration.vo.MigrationParamVO;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -69,7 +70,8 @@ public class MigrationTask implements Runnable{
             dmhandlemsglog.setProcedurename(dmgrouptable.getHandleprocedurename());
             dmhandlemsglog.setProcedure(dmgrouptable.getHandleprocedure());
             if("1".equals(paramVO.getParamType())){
-                dmhandlemsglog.setMigrationparam(paramVO.getStartTime() + "---" + paramVO.getEndTime());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                dmhandlemsglog.setMigrationparam(sdf.format(paramVO.getStartTime()) + "---" + sdf.format(paramVO.getEndTime()));
             } else {
                 dmhandlemsglog.setMigrationparam(paramVO.getParamValue());
             }
